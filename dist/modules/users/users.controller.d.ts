@@ -11,7 +11,7 @@ export declare class UsersController {
     findAll(): import("./entities/user.entity").User[];
     findOne(id: number): import("./entities/user.entity").User;
     update(id: number, updateUserDto: UpdateUserDto): {
-        data: import("./entities/user.entity").User;
+        data: import("./entities/user.entity").User | undefined;
         message: string;
         statusCode: import("@nestjs/common").HttpStatus;
     };

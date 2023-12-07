@@ -4,8 +4,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { HttpException } from '@nestjs/common';
-import { CacheService } from 'src/core/lib/cache/cache.service';
-import { Field } from 'src/core/lib/cache/types/field.type';
+import { CacheService } from 'core/lib/cache/cache.service';
+// import { Field } from 'src/core/lib/cache/types/field.type';
 @Injectable()
 export class UsersService {
   constructor(
@@ -13,14 +13,15 @@ export class UsersService {
   ) { }
 
   users: User[] = [];
-  createuserForAuth(createUserDto) {
+  createuserForAuth(createUserDto:CreateUserDto) {
     const { email } = createUserDto
     const user = this.findUserByEmail(email)
     if (user) throw new HttpException('user already exist!', HttpStatus.CONFLICT);
     let length = this.users.length;
     const createdUser = new User({
-      id: ++length,
       ...createUserDto,
+      id: ++length
+      
     });
     this.users.push(createdUser);
   }
@@ -59,7 +60,7 @@ export class UsersService {
 
   update(id: number, updateUserDto: UpdateUserDto) {
     const user = this.users.find((user) => user.id === id);
-    user.updateOne(updateUserDto);
+    user?.updateOne(updateUserDto);
     return {
       data: user,
       message: 'Updated User Successfully',
@@ -71,7 +72,7 @@ export class UsersService {
     const user = this.findOne(id)
     let userID = user.id + '';
     this.users = this.users.filter((user) => user.id !== id);
-    // this.cacheService.deleteField(userID, 'accessToken');
+  //  return this.cacheService.getField(userID, 'userID');
     this.cacheService.deleteUserFromCache(userID)
     return {
       data: user,

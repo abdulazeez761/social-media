@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommentsService = void 0;
 const common_1 = require("@nestjs/common");
-const posts_service_1 = require("../posts/posts.service");
 const comment_entity_1 = require("./entities/comment.entity");
 const users_service_1 = require("../users/users.service");
+const posts_service_1 = require("../posts/posts.service");
 let CommentsService = class CommentsService {
     constructor(postsService, userService) {
         this.postsService = postsService;
@@ -31,12 +31,12 @@ let CommentsService = class CommentsService {
                 throw new common_1.HttpException('comment does not exist ', common_1.HttpStatus.BAD_REQUEST);
             const replyID = comment.comments.length + 1;
             const reply = new comment_entity_1.Comment({
-                id: replyID,
-                ...createCommentDto
+                ...createCommentDto,
+                id: replyID
             });
             const replyComment = new comment_entity_1.Comment({
-                id: commentID,
                 ...createCommentDto,
+                id: commentID
             });
             replyComment.addReplyToComment(comment, user);
             this.comments.push(replyComment);
@@ -44,8 +44,8 @@ let CommentsService = class CommentsService {
         }
         else {
             const comment = new comment_entity_1.Comment({
+                ...createCommentDto,
                 id: commentID,
-                ...createCommentDto
             });
             comment.addComment(user, post);
             this.comments.push(comment);
@@ -56,12 +56,6 @@ let CommentsService = class CommentsService {
     }
     findOne(id) {
         return `This action returns a #${id} comment`;
-    }
-    update(id, updateCommentDto) {
-        return `This action updates a #${id} comment`;
-    }
-    remove(id) {
-        return `This action removes a #${id} comment`;
     }
 };
 exports.CommentsService = CommentsService;

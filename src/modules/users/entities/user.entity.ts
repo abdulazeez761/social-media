@@ -1,21 +1,21 @@
-import { Gender } from 'src/shared/enums/gender.enum';
+import { Gender } from 'shared/enums/gender.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
 export class User {
-  id: number;
+  id!: number;
 
-  username: string;
+  username!: string;
 
-  email: string;
+  email!: string;
 
-  password: string;
+  password!: string;
 
-  gender: Gender;
+  gender!: Gender;
 
-  birthday: string;
+  birthday!: string;
 
-  city: string;
+  city!: string;
 
   constructor(createUserDto: CreateUserDto) {
     Object.assign(this, createUserDto);

@@ -38,7 +38,7 @@ export class CacheService {
             'Field ' + field + ' Does not exist',
             HttpStatus.INTERNAL_SERVER_ERROR,
         );
-        return userFromCache.accessToken
+        return userFromCache[field]
     }
 
 }

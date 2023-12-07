@@ -13,8 +13,8 @@ exports.AccessTokenGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const jwt_1 = require("@nestjs/jwt");
-const public_decorator_1 = require("../../decorator/public.decorator");
 const cache_service_1 = require("../../lib/cache/cache.service");
+const public_decorator_1 = require("../../decorator/public.decorator");
 let AccessTokenGuard = class AccessTokenGuard {
     constructor(jwtService, reflect, cacheService) {
         this.jwtService = jwtService;
@@ -42,14 +42,15 @@ let AccessTokenGuard = class AccessTokenGuard {
             });
             const { sub } = decodedToken;
             const userFromCache = await this.cacheService.get(sub + '');
-            const isRecivedTokenExisttInCache = userFromCache.accessToken === accesToken;
+            const isRecivedTokenExisttInCache = userFromCache?.accessToken === accesToken;
             if (!isRecivedTokenExisttInCache)
                 throw new common_1.HttpException("اساعدك؟", common_1.HttpStatus.UNAUTHORIZED);
             request.user = decodedToken;
             return true;
         }
         catch (error) {
-            throw new common_1.HttpException(!!error?.message ? error.message : 'You must be logged in first', !!error?.status ? error.status : common_1.HttpStatus.UNAUTHORIZED);
+            const typedError = error;
+            throw new common_1.HttpException(!!typedError.message ? typedError.message : 'You must be logged in first', common_1.HttpStatus.UNAUTHORIZED);
         }
     }
 };

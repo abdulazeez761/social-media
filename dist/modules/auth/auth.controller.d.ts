@@ -8,7 +8,9 @@ export declare class AuthController {
         statusCode: import("@nestjs/common").HttpStatus;
         message: string;
     }>;
-    loginUserIn(logUserInDto: LogUserInDto): Promise<any>;
+    loginUserIn(logUserInDto: LogUserInDto): Promise<string | {
+        accessToken: string;
+    }>;
     logUserOut(id: number): Promise<{
         message: string;
         statusCode: import("@nestjs/common").HttpStatus;

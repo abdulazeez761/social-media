@@ -13,12 +13,12 @@ export class LogUserInDto {
     @IsNotEmpty()
     @IsEmail()
     @IsString()
-    email: string;
+    email!: string;
 
     @MaxLength(30)
     @MinLength(8)
     @IsNotEmpty()
     @IsString()
     @IsNotEmpty()
-    password: string;
+    password!: string;
 }

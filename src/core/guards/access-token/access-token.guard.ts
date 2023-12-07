@@ -1,10 +1,11 @@
 import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
-import { DecodedTokenI } from 'src/shared/interfaces/decoded-token.interface';
-import { RequestI } from 'src/shared/interfaces/request.interface';
-import { IS_PUBLIC_KEY } from 'src/core/decorator/public.decorator';
-import { CacheService } from 'src/core/lib/cache/cache.service';
+import { CacheService } from 'core/lib/cache/cache.service';
+import { IS_PUBLIC_KEY } from 'core/decorator/public.decorator';
+import { DecodedTokenI } from 'shared/interfaces/decoded-token.interface';
+import { RequestI } from 'shared/interfaces/request.interface';
+// import { Error } from 'shared/interfaces/error.interface';
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
   constructor(
@@ -43,7 +44,7 @@ export class AccessTokenGuard implements CanActivate {
         userID: string;
       }>(sub + '')
 
-      const isRecivedTokenExisttInCache = userFromCache.accessToken === accesToken;
+      const isRecivedTokenExisttInCache = userFromCache?.accessToken === accesToken;
       if (!isRecivedTokenExisttInCache)
         throw new HttpException("اساعدك؟", HttpStatus.UNAUTHORIZED);
 
@@ -51,10 +52,11 @@ export class AccessTokenGuard implements CanActivate {
 
       return true;
 
-    } catch (error) {
+    } catch (error ) {
+      const typedError = error as Error;
       throw new HttpException(
-        !!error?.message ? error.message : 'You must be logged in first',
-        !!error?.status ? error.status : HttpStatus.UNAUTHORIZED,
+        !!typedError.message ? typedError.message : 'You must be logged in first',
+         HttpStatus.UNAUTHORIZED,
       );
     }
   }

@@ -1,4 +1,4 @@
-import { Gender } from 'src/shared/enums/gender.enum';
+import { Gender } from 'shared/enums/gender.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 export declare class User {

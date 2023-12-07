@@ -10,8 +10,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CacheModule = void 0;
 const common_1 = require("@nestjs/common");
 const cache_manager_1 = require("@nestjs/cache-manager");
-const app_options_1 = require("../../../shared/config/app.options");
 const cache_service_1 = require("./cache.service");
+const app_options_1 = require("../../../shared/config/app.options");
 let CacheModule = CacheModule_1 = class CacheModule {
     static register(_storeName) {
         return {

@@ -27,8 +27,8 @@ let UsersService = class UsersService {
             throw new common_2.HttpException('user already exist!', common_1.HttpStatus.CONFLICT);
         let length = this.users.length;
         const createdUser = new user_entity_1.User({
-            id: ++length,
             ...createUserDto,
+            id: ++length
         });
         this.users.push(createdUser);
     }
@@ -61,7 +61,7 @@ let UsersService = class UsersService {
     }
     update(id, updateUserDto) {
         const user = this.users.find((user) => user.id === id);
-        user.updateOne(updateUserDto);
+        user?.updateOne(updateUserDto);
         return {
             data: user,
             message: 'Updated User Successfully',

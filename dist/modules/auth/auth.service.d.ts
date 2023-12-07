@@ -3,7 +3,7 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt/dist/jwt.service';
 import { LogUserInDto } from './dto/log-user-in.dto';
-import { CacheService } from 'src/core/lib/cache/cache.service';
+import { CacheService } from 'core/lib/cache/cache.service';
 export declare class AuthService {
     private readonly userService;
     private readonly jwtService;
@@ -13,7 +13,9 @@ export declare class AuthService {
         statusCode: HttpStatus;
         message: string;
     }>;
-    logUserIn(logUserInDto: LogUserInDto): Promise<any>;
+    logUserIn(logUserInDto: LogUserInDto): Promise<string | {
+        accessToken: string;
+    }>;
     logUserOut(id: number): Promise<{
         message: string;
         statusCode: HttpStatus;

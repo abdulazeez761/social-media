@@ -1,10 +1,9 @@
-import { Controller, Post, Body, UseInterceptors, Req, Get, ParseIntPipe, Param } from '@nestjs/common';
-import { Request } from 'express';
+import { Controller, Post, Body,  Get, ParseIntPipe, Param } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { LogUserInDto } from './dto/log-user-in.dto';
-import { Public } from 'src/core/decorator/public.decorator';
-import { LoggingInterceptor } from 'src/core/Interceptors/just-for-testing.interseptor';
+import { Public } from 'core/decorator/public.decorator';
+// import { LoggingInterceptor } from 'src/core/Interceptors/just-for-testing.interseptor';
 @Public()
 // @UseInterceptors(LoggingInterceptor)
 @Controller('auth')

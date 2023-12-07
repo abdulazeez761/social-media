@@ -1,18 +1,18 @@
-import { Allow, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, IsUrl, MaxLength, isNotEmpty } from 'class-validator';
+import {  IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString,  MaxLength} from 'class-validator';
 
 export class CreateCommentDto {
-    id: number;
+    id!: number;
 
     @IsNotEmpty()
     @MaxLength(2200)
     @IsString()
-    text: string;
+    text!: string;
 
     @IsNumber()
     @IsNotEmpty()
-    author: number
+    author!: number;
 
     @IsOptional()
     @IsPositive()
-    replyToComment: number
+    replyToComment!: number;
 }

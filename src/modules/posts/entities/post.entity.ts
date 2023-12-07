@@ -1,15 +1,15 @@
-import { User } from 'src/modules/users/entities/user.entity';
+import { User } from 'modules/users/entities/user.entity';
 import { CreatePostDto } from '../dto/create-post.dto';
 import { UpdatePostDto } from '../dto/update-post.dto';
 
 export class Post {
-  id: number;
+  id!: number;
 
-  author: User;
+  author!: User;
 
-  text: string;
+  text!: string;
 
-  image: string; // URL;
+  image!: string; // URL;
 
   createdAt: string; // Time of creation
 

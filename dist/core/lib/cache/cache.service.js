@@ -39,7 +39,7 @@ let CacheService = class CacheService {
         const userFromCache = await this.get(key);
         if (!userFromCache)
             throw new common_1.HttpException('Field ' + field + ' Does not exist', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
-        return userFromCache.accessToken;
+        return userFromCache[field];
     }
 };
 exports.CacheService = CacheService;

@@ -1,5 +1,5 @@
-import { Post } from "src/modules/posts/entities/post.entity";
-import { User } from "src/modules/users/entities/user.entity";
+import { Post } from "modules/posts/entities/post.entity";
+import { User } from "modules/users/entities/user.entity";
 import { CreateCommentDto } from "../dto/create-comment.dto";
 import { UpdateCommentDto } from "../dto/update-comment.dto";
 export declare class Comment {
@@ -13,6 +13,6 @@ export declare class Comment {
     updateOne(updateCommentDto: UpdateCommentDto): void;
     addAuthor(author: User): void;
     addPost(post: Post): void;
-    addComment(user: any, post: any): void;
-    addReplyToComment(replyto: Comment, user: any): void;
+    addComment(user: User, post: Post): void;
+    addReplyToComment(replyto: Comment, user: User): void;
 }

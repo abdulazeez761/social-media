@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt/dist/jwt.service';
 import { LogUserInDto } from './dto/log-user-in.dto';
-import { CacheService } from 'src/core/lib/cache/cache.service';
+import { CacheService } from 'core/lib/cache/cache.service';
 @Injectable()
 export class AuthService {
 
@@ -79,7 +79,6 @@ export class AuthService {
     async logUserOut(id: number) {
         await this.cacheService.deleteField(id + '', "accessToken")
         return {
-
             message: 'logend out!',
             statusCode: HttpStatus.OK,
         };

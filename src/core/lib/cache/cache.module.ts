@@ -1,7 +1,7 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { CacheModule as NestJSCacheModule } from '@nestjs/cache-manager';
-import { cacheManagerOptions } from 'src/shared/config/app.options';
 import { CacheService } from './cache.service';
+import { cacheManagerOptions } from 'shared/config/app.options';
 
 @Global()
 @Module({})
