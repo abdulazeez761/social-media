@@ -5,19 +5,32 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     create(createUserDto: CreateUserDto): Promise<{
-        statusCode: import("@nestjs/common").HttpStatus;
+        httpStatus: import("@nestjs/common").HttpStatus;
         message: string;
+        data: import("./entities/user.entity").User;
     }>;
-    findAll(): import("./entities/user.entity").User[];
-    findOne(id: number): import("./entities/user.entity").User;
+    findAll(): {
+        httpStatus: import("@nestjs/common").HttpStatus;
+        message: string;
+        data: import("./entities/user.entity").User[];
+    };
+    findOne(id: number): {
+        data: import("./entities/user.entity").User;
+        message: string;
+        httpStatus: import("@nestjs/common").HttpStatus;
+    };
     update(id: number, updateUserDto: UpdateUserDto): {
         data: import("./entities/user.entity").User | undefined;
         message: string;
-        statusCode: import("@nestjs/common").HttpStatus;
+        httpStatus: import("@nestjs/common").HttpStatus;
     };
     remove(id: number): {
-        data: import("./entities/user.entity").User;
+        data: {
+            data: import("./entities/user.entity").User;
+            message: string;
+            httpStatus: import("@nestjs/common").HttpStatus;
+        };
         message: string;
-        statusCode: import("@nestjs/common").HttpStatus;
+        httpStatus: import("@nestjs/common").HttpStatus;
     };
 }

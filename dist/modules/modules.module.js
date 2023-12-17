@@ -9,15 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ModulesModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_module_1 = require("./auth/auth.module");
-const comments_module_1 = require("./comments/comments.module");
-const posts_module_1 = require("./posts/posts.module");
 const users_module_1 = require("./users/users.module");
 let ModulesModule = class ModulesModule {
 };
 exports.ModulesModule = ModulesModule;
 exports.ModulesModule = ModulesModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, posts_module_1.PostsModule, auth_module_1.AuthModule, comments_module_1.CommentsModule]
+        imports: [users_module_1.UsersModule, auth_module_1.AuthModule],
     })
 ], ModulesModule);
 //# sourceMappingURL=modules.module.js.map

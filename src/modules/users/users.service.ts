@@ -5,35 +5,60 @@ import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { HttpException } from '@nestjs/common';
 import { CacheService } from 'core/lib/cache/cache.service';
+import { I18nService } from 'nestjs-i18n';
+import { I18nTranslations } from 'resources/generated/i18n.generated';
 // import { Field } from 'src/core/lib/cache/types/field.type';
 @Injectable()
 export class UsersService {
   constructor(
-    private readonly cacheService: CacheService
-  ) { }
+    private readonly cacheService: CacheService,
+    private readonly i18nService: I18nService<I18nTranslations>,
+  ) {}
 
   users: User[] = [];
-  createuserForAuth(createUserDto:CreateUserDto) {
-    const { email } = createUserDto
-    const user = this.findUserByEmail(email)
-    if (user) throw new HttpException('user already exist!', HttpStatus.CONFLICT);
+
+  createUserForAuth(createUserDto: CreateUserDto) {
+    const { email } = createUserDto;
+    const user = this.findUserByEmail(email);
+    if (user)
+      throw new HttpException(
+        this.i18nService.translate('shared.errors.userAlreadyExist', {
+          args: {
+            entity: this.i18nService.translate('entities.user'),
+          },
+        }),
+        HttpStatus.CONFLICT,
+      );
     let length = this.users.length;
+
     const createdUser = new User({
       ...createUserDto,
-      id: ++length
-      
+      id: ++length,
     });
     this.users.push(createdUser);
+    return createdUser;
   }
 
   findUserByEmail(email: string) {
-    return this.users.find((user) => user.email === email)
+    return this.users.find((user) => user.email === email);
   }
 
   async create(createUserDto: CreateUserDto) {
-    const { password } = createUserDto;
+    const { password, email } = createUserDto;
+
     let length = this.users.length;
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    const isUserExist = this.findUserByEmail(email);
+    if (isUserExist)
+      throw new HttpException(
+        this.i18nService.translate('shared.errors.userAlreadyExist', {
+          args: {
+            entity: this.i18nService.translate('entities.user'),
+          },
+        }),
+        HttpStatus.CONFLICT,
+      );
 
     const user = new User({
       ...createUserDto,
@@ -43,19 +68,37 @@ export class UsersService {
     this.users.push(user);
 
     return {
-      statusCode: HttpStatus.CREATED,
-      message: 'Created User Successfully',
+      httpStatus: HttpStatus.CREATED,
+      message: this.i18nService.translate('shared.success.create'),
+      data: user,
     };
   }
 
   findAll() {
-    return this.users;
+    return {
+      httpStatus: HttpStatus.OK,
+      message: this.i18nService.translate('shared.success.approve'),
+      data: this.users,
+    };
   }
 
   findOne(id: number) {
     const user = this.users.find((user) => user.id === id);
-    if (!user) throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
-    return user
+    if (!user)
+      throw new HttpException(
+        this.i18nService.translate('shared.errors.userAlreadyExist', {
+          args: {
+            entity: this.i18nService.translate('entities.user'),
+          },
+        }),
+        HttpStatus.CONFLICT,
+      );
+
+    return {
+      data: user,
+      message: this.i18nService.translate('shared.success.approve'),
+      httpStatus: HttpStatus.OK,
+    };
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
@@ -63,24 +106,28 @@ export class UsersService {
     user?.updateOne(updateUserDto);
     return {
       data: user,
-      message: 'Updated User Successfully',
-      statusCode: HttpStatus.OK,
+      message: this.i18nService.translate('shared.errors.update', {
+        args: {
+          entity: this.i18nService.translate('entities.user'),
+        },
+      }),
+      httpStatus: HttpStatus.OK,
     };
   }
 
   remove(id: number) {
-    const user = this.findOne(id)
-    let userID = user.id + '';
+    const user = this.findOne(id);
+    let userID = user.data.id + '';
     this.users = this.users.filter((user) => user.id !== id);
-  //  return this.cacheService.getField(userID, 'userID');
-    this.cacheService.deleteUserFromCache(userID)
+    this.cacheService.deleteUserFromCache(userID);
     return {
       data: user,
-      message: 'Deleted User Successfully!',
-      statusCode: HttpStatus.OK,
+      message: this.i18nService.translate('shared.success.delete', {
+        args: {
+          entity: this.i18nService.translate('entities.user'),
+        },
+      }),
+      httpStatus: HttpStatus.OK,
     };
-
   }
-
-
 }

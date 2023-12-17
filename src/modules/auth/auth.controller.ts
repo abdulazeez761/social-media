@@ -1,37 +1,48 @@
-import { Controller, Post, Body,  Get, ParseIntPipe, Param } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import {
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  UseInterceptors,
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist';
+import { ApiResponse } from '@nestjs/swagger/dist/decorators';
+import { CreateUserDto } from 'modules/users/dto/create-user.dto';
+import { registerRouteApiResponse } from './constants/register-route-api-response.conatant';
 import { LogUserInDto } from './dto/log-user-in.dto';
+import { LoginService } from './login.service';
+import { RegisterService } from './register.service';
 import { Public } from 'core/decorator/public.decorator';
-// import { LoggingInterceptor } from 'src/core/Interceptors/just-for-testing.interseptor';
-@Public()
-// @UseInterceptors(LoggingInterceptor)
+import { LogoutService } from './logout.service';
+
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly authService: AuthService,
+    private readonly loginService: LoginService,
+    private readonly registerService: RegisterService,
+    private readonly logoutServiec: LogoutService,
+  ) {}
 
-  ) { }
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Public()
+  @ApiResponse(registerRouteApiResponse)
   @Post('register-user')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.authService.create(createUserDto)
+  registerUser(@Body() createUserDto: CreateUserDto) {
+    return this.registerService.registerUser(createUserDto);
   }
 
   @Public()
-  // @UseInterceptors(LoggingInterceptor)
   @Post('login-user')
-  loginUserIn(@Body() logUserInDto: LogUserInDto) {
-    return this.authService.logUserIn(logUserInDto)
+  logUserIn(@Body() logUserInDto: LogUserInDto) {
+    return this.loginService.logUserIn(logUserInDto);
   }
-
-  @Get("logout-user/:id")
+  @UseInterceptors(ClassSerializerInterceptor)
+  @Get('logout-user/:id')
   logUserOut(@Param('id', ParseIntPipe) id: number) {
-    return this.authService.logUserOut(id)
-
+    return this.logoutServiec.logUserOut(id);
   }
-
 }
-// function Get(arg0: string): (target: AuthController, propertyKey: "logUserOut", descriptor: TypedPropertyDescriptor<(req: any) => any>) => void | TypedPropertyDescriptor<(req: any) => any> {
-//   throw new Error('Function not implemented.');
-// }
-

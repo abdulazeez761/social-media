@@ -15,11 +15,13 @@ const core_1 = require("@nestjs/core");
 const jwt_1 = require("@nestjs/jwt");
 const cache_service_1 = require("../../lib/cache/cache.service");
 const public_decorator_1 = require("../../decorator/public.decorator");
+const config_1 = require("@nestjs/config");
 let AccessTokenGuard = class AccessTokenGuard {
-    constructor(jwtService, reflect, cacheService) {
+    constructor(jwtService, reflect, cacheService, configService) {
         this.jwtService = jwtService;
         this.reflect = reflect;
         this.cacheService = cacheService;
+        this.configService = configService;
     }
     async canActivate(context) {
         try {
@@ -28,29 +30,33 @@ let AccessTokenGuard = class AccessTokenGuard {
             const authorization = request.headers.authorization;
             const isPublic = this.reflect.getAllAndOverride(public_decorator_1.IS_PUBLIC_KEY, [
                 context.getClass(),
-                context.getHandler()
+                context.getHandler(),
             ]);
             if (isPublic)
                 return true;
-            if (!authorization || Array.isArray(authorization) || typeof authorization !== 'string')
+            if (!authorization ||
+                Array.isArray(authorization) ||
+                typeof authorization !== 'string')
                 throw new common_1.HttpException('Invalid Headers', common_1.HttpStatus.UNAUTHORIZED);
-            const [bearer, accesToken] = authorization.split(" ");
-            if (bearer !== "Bearer")
+            const [bearer, accesToken] = authorization.split(' ');
+            if (bearer !== 'Bearer')
                 throw new common_1.HttpException('Invalid Headers', common_1.HttpStatus.UNAUTHORIZED);
             const decodedToken = this.jwtService.verify(accesToken, {
-                secret: "@AA@23&^D^*&^&DWA^&D^A&D^&SD()()*-989daw>++++_+A1123djakwjdawdja213_AccessToken"
+                secret: this.configService.get('USER_ACCESS_TOKEN_SECRET'),
             });
             const { sub } = decodedToken;
             const userFromCache = await this.cacheService.get(sub + '');
             const isRecivedTokenExisttInCache = userFromCache?.accessToken === accesToken;
             if (!isRecivedTokenExisttInCache)
-                throw new common_1.HttpException("اساعدك؟", common_1.HttpStatus.UNAUTHORIZED);
+                throw new common_1.HttpException('اساعدك؟', common_1.HttpStatus.UNAUTHORIZED);
             request.user = decodedToken;
             return true;
         }
         catch (error) {
             const typedError = error;
-            throw new common_1.HttpException(!!typedError.message ? typedError.message : 'You must be logged in first', common_1.HttpStatus.UNAUTHORIZED);
+            throw new common_1.HttpException(!!typedError.message
+                ? typedError.message
+                : 'You must be logged in first', common_1.HttpStatus.UNAUTHORIZED);
         }
     }
 };
@@ -59,6 +65,7 @@ exports.AccessTokenGuard = AccessTokenGuard = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [jwt_1.JwtService,
         core_1.Reflector,
-        cache_service_1.CacheService])
+        cache_service_1.CacheService,
+        config_1.ConfigService])
 ], AccessTokenGuard);
 //# sourceMappingURL=access-token.guard.js.map

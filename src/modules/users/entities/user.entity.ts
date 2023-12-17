@@ -1,6 +1,7 @@
 import { Gender } from 'shared/enums/gender.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { Exclude } from 'class-transformer';
 
 export class User {
   id!: number;
@@ -9,6 +10,7 @@ export class User {
 
   email!: string;
 
+  @Exclude()
   password!: string;
 
   gender!: Gender;

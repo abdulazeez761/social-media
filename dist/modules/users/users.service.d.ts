@@ -3,26 +3,42 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { CacheService } from 'core/lib/cache/cache.service';
+import { I18nService } from 'nestjs-i18n';
+import { I18nTranslations } from 'resources/generated/i18n.generated';
 export declare class UsersService {
     private readonly cacheService;
-    constructor(cacheService: CacheService);
+    private readonly i18nService;
+    constructor(cacheService: CacheService, i18nService: I18nService<I18nTranslations>);
     users: User[];
-    createuserForAuth(createUserDto: CreateUserDto): void;
+    createUserForAuth(createUserDto: CreateUserDto): User;
     findUserByEmail(email: string): User | undefined;
     create(createUserDto: CreateUserDto): Promise<{
-        statusCode: HttpStatus;
+        httpStatus: HttpStatus;
         message: string;
+        data: User;
     }>;
-    findAll(): User[];
-    findOne(id: number): User;
+    findAll(): {
+        httpStatus: HttpStatus;
+        message: string;
+        data: User[];
+    };
+    findOne(id: number): {
+        data: User;
+        message: string;
+        httpStatus: HttpStatus;
+    };
     update(id: number, updateUserDto: UpdateUserDto): {
         data: User | undefined;
         message: string;
-        statusCode: HttpStatus;
+        httpStatus: HttpStatus;
     };
     remove(id: number): {
-        data: User;
+        data: {
+            data: User;
+            message: string;
+            httpStatus: HttpStatus;
+        };
         message: string;
-        statusCode: HttpStatus;
+        httpStatus: HttpStatus;
     };
 }
