@@ -24,23 +24,25 @@ let HttpExceptionFilter = class HttpExceptionFilter {
         const statusCode = exception.getStatus();
         const { message } = exception;
         const LoggedRequest = (0, request_mapper_util_1.requestMapper)(request);
-        const loggedException = {
-            statusCode,
-            message,
-            time: new Date().toISOString(),
-            request: LoggedRequest,
-        };
-        this.exceptionsLoggerService.logException(loggedException);
-        response.status(statusCode).json({
-            status: statusCode,
-            timeStamp: new Date().toISOString(),
-            path: request.url,
-            message: message,
-        });
         try {
+            const loggedException = {
+                statusCode,
+                message,
+                time: new Date().toISOString(),
+                request: LoggedRequest,
+            };
+            this.exceptionsLoggerService.logException(loggedException);
+            response.status(statusCode).json({
+                requestID: LoggedRequest.id,
+                status: statusCode,
+                timeStamp: new Date().toISOString(),
+                path: request.url,
+                message: message,
+            });
         }
         catch (error) {
             response.status(common_1.HttpStatus.INTERNAL_SERVER_ERROR).json({
+                requestID: LoggedRequest.id,
                 status: statusCode,
                 timeStamp: new Date().toISOString(),
                 path: request.url,

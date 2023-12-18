@@ -10,12 +10,26 @@ exports.RequestIdMiddleware = void 0;
 const common_1 = require("@nestjs/common");
 const cuid2_1 = require("@paralleldrive/cuid2");
 const general_constant_1 = require("../../shared/constants/general.constant");
+const requestID_generator_util_1 = require("../../shared/interfaces/http/requestID-generator.util");
 let RequestIdMiddleware = class RequestIdMiddleware {
     use(req, res, next) {
         const requestID = req.header(general_constant_1.REQUEST_ID_TOKEN_HEADER);
+        const authorization = req.headers.authorization;
+        const date = new Date().toISOString();
+        const isTokenOrEmail = authorization
+            ? authorization?.split(' ')[1]
+            : req.body.email;
+        if (!isTokenOrEmail) {
+            if (!req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER] ||
+                (requestID && !(0, cuid2_1.isCuid)(requestID)))
+                req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER] = (0, cuid2_1.createId)();
+            res.set(general_constant_1.REQUEST_ID_TOKEN_HEADER, req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER]);
+            return next();
+        }
+        const generatedID = (0, requestID_generator_util_1.requestIdGenerator)(date, isTokenOrEmail);
         if (!req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER] ||
             (requestID && !(0, cuid2_1.isCuid)(requestID)))
-            req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER] = (0, cuid2_1.createId)();
+            req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER] = generatedID;
         res.set(general_constant_1.REQUEST_ID_TOKEN_HEADER, req.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER]);
         next();
     }

@@ -82,8 +82,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
 exports.UsersController = UsersController = __decorate([
-    (0, swagger_1.ApiTags)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
-    (0, common_1.Controller)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
+    (0, swagger_1.ApiTags)(routes_constant_1.ROUTES.USERS.CONTROLLER),
+    (0, common_1.Controller)(routes_constant_1.ROUTES.USERS.CONTROLLER),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map

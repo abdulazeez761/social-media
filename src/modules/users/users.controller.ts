@@ -17,8 +17,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { Public } from 'core/decorator/public.decorator';
 import { ROUTES } from 'shared/constants/routes.constant';
 
-@ApiTags(ROUTES.AUTH.CONTROLLER)
-@Controller(ROUTES.AUTH.CONTROLLER)
+@ApiTags(ROUTES.USERS.CONTROLLER)
+@Controller(ROUTES.USERS.CONTROLLER)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
