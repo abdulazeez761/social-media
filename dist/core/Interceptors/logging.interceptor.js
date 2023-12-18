@@ -13,6 +13,7 @@ exports.LoggingInterceptor = void 0;
 const common_1 = require("@nestjs/common");
 const requests_logger_service_1 = require("../lib/logger/requests-logger.service");
 const rxjs_1 = require("rxjs");
+const general_constant_1 = require("../../shared/constants/general.constant");
 const request_mapper_util_1 = require("../../shared/util/request-mapper.util");
 let LoggingInterceptor = class LoggingInterceptor {
     constructor(requestsLoggerService) {
@@ -22,10 +23,12 @@ let LoggingInterceptor = class LoggingInterceptor {
         const ctx = context.switchToHttp();
         const request = ctx.getRequest();
         const then = Date.now();
+        const requestID = request.headers[general_constant_1.REQUEST_ID_TOKEN_HEADER];
         return next.handle().pipe((0, rxjs_1.map)((responseFromApp) => {
             const MS_TO_S = 1000;
             const requestDuration = (Date.now() - then) / MS_TO_S;
             responseFromApp.requestDuration = requestDuration;
+            responseFromApp.REQUEST_ID_TOKEN_HEADER = requestID + '';
             const loggedRequest = (0, request_mapper_util_1.requestMapper)(request);
             this.requestsLoggerService.logRequest(loggedRequest, responseFromApp);
             return responseFromApp;

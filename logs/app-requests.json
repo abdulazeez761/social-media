@@ -3094,5 +3094,233 @@
       "message": "Successfully deleted the User",
       "requestDuration": 0.001
     }
-  }
-]
+  },
+  {
+    "request": {
+      "id": "gxzhoo71bb2h3qg6b58nr473",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.057
+    }
+  },
+  {
+    "request": {
+      "id": "cs1vqth19fcaybfa9lcw4jia",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.057
+    }
+  },
+  {
+    "request": {
+      "id": "nn53pk16tbe0muxupj50w3v0",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "REQUEST_ID_TOKEN_HEADER": "testID",
+      "requestDuration": 0.058
+    }
+  },
+  {
+    "request": {
+      "id": "dapazhdgz8xq9iwczwmtabyl",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.057,
+      "REQUEST_ID_TOKEN_HEADER": "test"
+    }
+  },
+  {
+    "request": {
+      "id": "pjxxzufzyiv6z39seb7n4z3r",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.109,
+      "REQUEST_ID_TOKEN_HEADER": "test"
+    }
+  },
+  {
+    "request": {
+      "id": "shh4h1228x42l43t6iv2zq3e",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.063,
+      "REQUEST_ID_TOKEN_HEADER": "test"
+    }
+  },
+  {
+    "request": {
+      "id": "u3brv5qdaef8439dyuy4oj3e",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.061,
+      "REQUEST_ID_TOKEN_HEADER": "test"
+    }
+  },

@@ -23,6 +23,7 @@ const login_service_1 = require("./login.service");
 const register_service_1 = require("./register.service");
 const public_decorator_1 = require("../../core/decorator/public.decorator");
 const logout_service_1 = require("./logout.service");
+const routes_constant_1 = require("../../shared/constants/routes.constant");
 let AuthController = class AuthController {
     constructor(loginService, registerService, logoutServiec) {
         this.loginService = loginService;
@@ -35,8 +36,8 @@ let AuthController = class AuthController {
     logUserIn(logUserInDto) {
         return this.loginService.logUserIn(logUserInDto);
     }
-    logUserOut(id) {
-        return this.logoutServiec.logUserOut(id);
+    logUserOut(userID) {
+        return this.logoutServiec.logUserOut(userID);
     }
 };
 exports.AuthController = AuthController;
@@ -44,7 +45,7 @@ __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     (0, public_decorator_1.Public)(),
     (0, decorators_1.ApiResponse)(register_route_api_response_conatant_1.registerRouteApiResponse),
-    (0, common_1.Post)('register-user'),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.REGISTER_USER),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
@@ -52,7 +53,7 @@ __decorate([
 ], AuthController.prototype, "registerUser", null);
 __decorate([
     (0, public_decorator_1.Public)(),
-    (0, common_1.Post)('login-user'),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.LOG_USER_IN),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [log_user_in_dto_1.LogUserInDto]),
@@ -60,15 +61,15 @@ __decorate([
 ], AuthController.prototype, "logUserIn", null);
 __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
-    (0, common_1.Get)('logout-user/:id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Get)(routes_constant_1.ROUTES.AUTH.LOG_USER_OUT),
+    __param(0, (0, common_1.Param)('userID', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logUserOut", null);
 exports.AuthController = AuthController = __decorate([
-    (0, dist_1.ApiTags)('auth'),
-    (0, common_1.Controller)('auth'),
+    (0, dist_1.ApiTags)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
+    (0, common_1.Controller)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
     __metadata("design:paramtypes", [login_service_1.LoginService,
         register_service_1.RegisterService,
         logout_service_1.LogoutService])

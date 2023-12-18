@@ -14,17 +14,17 @@ export declare class UsersController {
         message: string;
         data: import("./entities/user.entity").User[];
     };
-    findOne(id: number): {
+    findOne(userID: number): {
         data: import("./entities/user.entity").User;
         message: string;
         httpStatus: import("@nestjs/common").HttpStatus;
     };
-    update(id: number, updateUserDto: UpdateUserDto): {
+    update(userID: number, updateUserDto: UpdateUserDto): {
         data: import("./entities/user.entity").User | undefined;
         message: string;
         httpStatus: import("@nestjs/common").HttpStatus;
     };
-    remove(id: number): {
+    remove(userID: number): {
         data: {
             data: import("./entities/user.entity").User;
             message: string;

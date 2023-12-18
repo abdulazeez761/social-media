@@ -1740,5 +1740,74 @@
       "routeParams": {},
       "method": 1
     }
+  },
+  {
+    "statusCode": 409,
+    "message": "user already exist User",
+    "time": "2023-12-18T12:24:29.933Z",
+    "request": {
+      "id": "axrxlbb1kutvrpbgr9jzdpem",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 409,
+    "message": "user already exist User",
+    "time": "2023-12-18T13:05:02.862Z",
+    "request": {
+      "id": "t90qr9zhw523rx4nmc5zsgfn",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 409,
+    "message": "user already exist User",
+    "time": "2023-12-18T13:05:09.932Z",
+    "request": {
+      "id": "pbxazvuaxs5kfi8hs41pbzmf",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "abm@1.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    }
   }
 ]

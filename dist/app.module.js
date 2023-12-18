@@ -18,8 +18,16 @@ const cron_job_module_1 = require("./core/lib/cron-job/cron-job.module");
 const config_1 = require("@nestjs/config");
 const app_config_1 = require("./shared/configs/app.config");
 const app_option_1 = require("./shared/configs/app.option");
+const request_id_middleware_1 = require("./core/middlewares/request-id.middleware");
+const helmet_1 = require("helmet");
 cache_module_1.CacheModule;
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply((0, helmet_1.default)(), request_id_middleware_1.RequestIdMiddleware).forRoutes({
+            path: '*',
+            method: common_1.RequestMethod.ALL,
+        });
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([

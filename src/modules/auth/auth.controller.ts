@@ -17,9 +17,10 @@ import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
 import { Public } from 'core/decorator/public.decorator';
 import { LogoutService } from './logout.service';
+import { ROUTES } from 'shared/constants/routes.constant';
 
-@ApiTags('auth')
-@Controller('auth')
+@ApiTags(ROUTES.AUTH.CONTROLLER)
+@Controller(ROUTES.AUTH.CONTROLLER)
 export class AuthController {
   constructor(
     private readonly loginService: LoginService,
@@ -30,19 +31,19 @@ export class AuthController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Public()
   @ApiResponse(registerRouteApiResponse)
-  @Post('register-user')
+  @Post(ROUTES.AUTH.REGISTER_USER)
   registerUser(@Body() createUserDto: CreateUserDto) {
     return this.registerService.registerUser(createUserDto);
   }
 
   @Public()
-  @Post('login-user')
+  @Post(ROUTES.AUTH.LOG_USER_IN)
   logUserIn(@Body() logUserInDto: LogUserInDto) {
     return this.loginService.logUserIn(logUserInDto);
   }
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get('logout-user/:id')
-  logUserOut(@Param('id', ParseIntPipe) id: number) {
-    return this.logoutServiec.logUserOut(id);
+  @Get(ROUTES.AUTH.LOG_USER_OUT)
+  logUserOut(@Param('userID', ParseIntPipe) userID: number) {
+    return this.logoutServiec.logUserOut(userID);
   }
 }

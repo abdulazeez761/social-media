@@ -15,9 +15,10 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Public } from 'core/decorator/public.decorator';
+import { ROUTES } from 'shared/constants/routes.constant';
 
-@ApiTags('users')
-@Controller('users')
+@ApiTags(ROUTES.AUTH.CONTROLLER)
+@Controller(ROUTES.AUTH.CONTROLLER)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -28,27 +29,27 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get()
+  @Get(ROUTES.USERS.FIND_ALL)
   findAll() {
     return this.usersService.findAll();
   }
 
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
+  @Get(ROUTES.USERS.FIND_ONE)
+  findOne(@Param('userID', ParseIntPipe) userID: number) {
+    return this.usersService.findOne(userID);
   }
   @UseInterceptors(ClassSerializerInterceptor)
-  @Patch(':id')
+  @Patch(ROUTES.USERS.UPDATE_ONE)
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('userID', ParseIntPipe) userID: number,
     @Body() updateUserDto: UpdateUserDto,
   ) {
-    return this.usersService.update(id, updateUserDto);
+    return this.usersService.update(userID, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(id);
+  @Delete(ROUTES.USERS.DELETE_ONE)
+  remove(@Param('userID', ParseIntPipe) userID: number) {
+    return this.usersService.remove(userID);
   }
 }

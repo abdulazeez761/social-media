@@ -25,14 +25,18 @@ let RegisterService = class RegisterService {
         const hashedPassword = await bcrypt.hash(password, salt);
         createUserDto.password = hashedPassword;
         const createdUser = this.usersService.createUserForAuth(createUserDto);
-        return {
-            httpStatus: common_1.HttpStatus.CREATED,
-            message: this.i18n.t('shared.success.create', {
-                args: { entity: this.i18n.t('entities.user') },
-            }),
-            data: createdUser,
-        };
+        const requestID = Request.
+            return, { httpStatus: HttpStatus, CREATED, message: , this: , i18n, t };
+        ('shared.success.create', {
+            args: { entity: this.i18n.t('entities.user') },
+        }),
+            data;
+        createdUser,
+            requestID;
+        requestID.
+        ;
     }
+    ;
 };
 exports.RegisterService = RegisterService;
 exports.RegisterService = RegisterService = __decorate([
@@ -40,4 +44,4 @@ exports.RegisterService = RegisterService = __decorate([
     __metadata("design:paramtypes", [users_service_1.UsersService,
         nestjs_i18n_1.I18nService])
 ], RegisterService);
-//# sourceMappingURL=register.service.js.map
+//# sourceMappingURL=RegisterService.js.map

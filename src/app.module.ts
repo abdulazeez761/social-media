@@ -1,4 +1,9 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 
 import { ModulesModule } from './modules/modules.module';
@@ -14,6 +19,8 @@ import {
   i18nOptions,
   jwtOptions,
 } from 'shared/configs/app.option';
+import { RequestIdMiddleware } from 'core/middlewares/request-id.middleware';
+import helmet from 'helmet';
 
 CacheModule;
 @Module({
@@ -30,4 +37,11 @@ CacheModule;
   controllers: [],
   providers: [...interceptors, ...guards, ...filters],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(helmet(), RequestIdMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
+  }
+}

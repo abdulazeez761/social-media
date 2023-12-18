@@ -10,5 +10,5 @@ export declare class AuthController {
     constructor(loginService: LoginService, registerService: RegisterService, logoutServiec: LogoutService);
     registerUser(createUserDto: CreateUserDto): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
     logUserIn(logUserInDto: LogUserInDto): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<string>>;
-    logUserOut(id: number): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
+    logUserOut(userID: number): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
 }

@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { RequestsLoggerService } from 'core/lib/logger/requests-logger.service';
 import { map, Observable } from 'rxjs';
+import { REQUEST_ID_TOKEN_HEADER } from 'shared/constants/general.constant';
 import { RequestI } from 'shared/interfaces/http/request.interface';
 import { ResponseFromApp } from 'shared/types/response-from-app.type';
 import { requestMapper } from 'shared/util/request-mapper.util';
@@ -22,12 +23,14 @@ export class LoggingInterceptor
     const ctx = context.switchToHttp();
     const request = ctx.getRequest<RequestI>();
     const then = Date.now();
+    const requestID = request.headers[REQUEST_ID_TOKEN_HEADER];
 
     return next.handle().pipe(
       map((responseFromApp) => {
         const MS_TO_S = 1000;
         const requestDuration = (Date.now() - then) / MS_TO_S;
         responseFromApp.requestDuration = requestDuration;
+        responseFromApp.REQUEST_ID_TOKEN_HEADER = requestID + '';
         const loggedRequest = requestMapper(request);
         this.requestsLoggerService.logRequest(loggedRequest, responseFromApp);
         return responseFromApp;

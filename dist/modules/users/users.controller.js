@@ -19,6 +19,7 @@ const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const swagger_1 = require("@nestjs/swagger");
 const public_decorator_1 = require("../../core/decorator/public.decorator");
+const routes_constant_1 = require("../../shared/constants/routes.constant");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -29,14 +30,14 @@ let UsersController = class UsersController {
     findAll() {
         return this.usersService.findAll();
     }
-    findOne(id) {
-        return this.usersService.findOne(id);
+    findOne(userID) {
+        return this.usersService.findOne(userID);
     }
-    update(id, updateUserDto) {
-        return this.usersService.update(id, updateUserDto);
+    update(userID, updateUserDto) {
+        return this.usersService.update(userID, updateUserDto);
     }
-    remove(id) {
-        return this.usersService.remove(id);
+    remove(userID) {
+        return this.usersService.remove(userID);
     }
 };
 exports.UsersController = UsersController;
@@ -51,38 +52,38 @@ __decorate([
 ], UsersController.prototype, "create", null);
 __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
-    (0, common_1.Get)(),
+    (0, common_1.Get)(routes_constant_1.ROUTES.USERS.FIND_ALL),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Get)(routes_constant_1.ROUTES.USERS.FIND_ONE),
+    __param(0, (0, common_1.Param)('userID', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
 __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Patch)(routes_constant_1.ROUTES.USERS.UPDATE_ONE),
+    __param(0, (0, common_1.Param)('userID', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Delete)(routes_constant_1.ROUTES.USERS.DELETE_ONE),
+    __param(0, (0, common_1.Param)('userID', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
 exports.UsersController = UsersController = __decorate([
-    (0, swagger_1.ApiTags)('users'),
-    (0, common_1.Controller)('users'),
+    (0, swagger_1.ApiTags)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
+    (0, common_1.Controller)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map
