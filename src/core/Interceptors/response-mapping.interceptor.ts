@@ -7,7 +7,7 @@ import {
 import { Response } from 'express';
 import { map, Observable } from 'rxjs';
 import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
-import { isResponseFromService } from 'shared/util/response-validator.util';
+import { isResponseFromService } from 'shared/interfaces/http/response-validator.util';
 
 @Injectable()
 export class ResponseMappingInterceptor

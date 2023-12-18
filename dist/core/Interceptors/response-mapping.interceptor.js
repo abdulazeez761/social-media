@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponseMappingInterceptor = void 0;
 const common_1 = require("@nestjs/common");
 const rxjs_1 = require("rxjs");
-const response_validator_util_1 = require("../../shared/util/response-validator.util");
+const response_validator_util_1 = require("../../shared/interfaces/http/response-validator.util");
 let ResponseMappingInterceptor = class ResponseMappingInterceptor {
     intercept(context, next) {
         const ctx = context.switchToHttp();
