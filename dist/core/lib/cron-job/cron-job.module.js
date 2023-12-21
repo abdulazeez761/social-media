@@ -9,12 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CronJobModule = void 0;
 const common_1 = require("@nestjs/common");
 const exception_clear_task_service_1 = require("./exception-clear-task.service");
+const requests_clear_task_service_1 = require("./requests-clear-task.service");
 let CronJobModule = class CronJobModule {
 };
 exports.CronJobModule = CronJobModule;
 exports.CronJobModule = CronJobModule = __decorate([
     (0, common_1.Module)({
-        providers: [exception_clear_task_service_1.ExceptionClearTaskService],
+        providers: [exception_clear_task_service_1.ExceptionClearTaskService, requests_clear_task_service_1.RrequestClearTaskService],
     })
 ], CronJobModule);
 //# sourceMappingURL=cron-job.module.js.map

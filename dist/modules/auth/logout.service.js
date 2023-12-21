@@ -20,9 +20,9 @@ let LogoutService = class LogoutService {
         this.userService = userService;
         this.i18nService = i18nService;
     }
-    async logUserOut(id) {
-        await this.cacheService.deleteField(id + '', 'accessToken');
-        const logedOutUser = this.userService.findOne(id).data;
+    async logUserOut(userID) {
+        await this.cacheService.deleteField(userID + '', 'accessToken');
+        const logedOutUser = this.userService.findOne(userID).data;
         return {
             message: this.i18nService.t('shared.success.logout'),
             httpStatus: common_1.HttpStatus.OK,

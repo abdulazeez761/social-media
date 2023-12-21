@@ -2,10 +2,8 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
-  Get,
-  Param,
-  ParseIntPipe,
   Post,
+  Req,
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger/dist';
@@ -18,6 +16,7 @@ import { RegisterService } from './register.service';
 import { Public } from 'core/decorator/public.decorator';
 import { LogoutService } from './logout.service';
 import { ROUTES } from 'shared/constants/routes.constant';
+import { RequestI } from 'shared/interfaces/http/request.interface';
 
 @ApiTags(ROUTES.AUTH.CONTROLLER)
 @Controller(ROUTES.AUTH.CONTROLLER)
@@ -42,8 +41,9 @@ export class AuthController {
     return this.loginService.logUserIn(logUserInDto);
   }
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get(ROUTES.AUTH.LOG_USER_OUT)
-  logUserOut(@Param('userID', ParseIntPipe) userID: number) {
+  @Post(ROUTES.AUTH.LOG_USER_OUT)
+  logUserOut(@Req() req: RequestI) {
+    const userID = req.user.sub;
     return this.logoutServiec.logUserOut(userID);
   }
 }

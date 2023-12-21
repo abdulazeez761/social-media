@@ -26,7 +26,7 @@ let CacheService = class CacheService {
         return this.cacheManager.get(key);
     }
     async deleteField(key, field) {
-        const keyFromCache = (await this.get(key));
+        const keyFromCache = await this.get(key);
         if (!keyFromCache)
             throw new common_1.HttpException('Field ' + field + ' Does not exist', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
         delete keyFromCache[field];

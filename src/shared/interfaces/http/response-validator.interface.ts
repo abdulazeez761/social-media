@@ -8,12 +8,7 @@ export function isResponseFromService(responseFromService?: DynamicObjectI) {
       HttpStatus.INTERNAL_SERVER_ERROR,
     );
   }
-  // if (!responseFromService.message) {
-  //   throw new HttpException(
-  //     'Response message is falsy',
-  //     HttpStatus.INTERNAL_SERVER_ERROR,
-  //   );
-  // }
+
   if (typeof responseFromService.message !== 'string') {
     throw new HttpException(
       'Response message must be a string',

@@ -1,4 +1,4 @@
 export interface ResponseFromInterceptorI {
   requestDuration: number;
-  REQUEST_ID_TOKEN_HEADER: string;
+  // REQUEST_ID_TOKEN_HEADER: string;
 }

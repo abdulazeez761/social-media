@@ -1,0 +1,441 @@
+[
+  {
+    "statusCode": 401,
+    "message": "jwt expired",
+    "time": "2023-12-19T20:41:14.118Z",
+    "request": {
+      "id": "euy,J1h beG c0i3O2i:J1I1U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMjkwNTYxMCwiZXhwIjoxNzAyOTkyMDEwfQ.jEosWCL_09y_J2N9olTUnTzkTdHWZSRJNEYfspSdZS8",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "jwt expired",
+    "time": "2023-12-19T20:42:45.238Z",
+    "request": {
+      "id": "euy,J1h beG c0i3O2i:J2I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMjkwNTYxMCwiZXhwIjoxNzAyOTkyMDEwfQ.jEosWCL_09y_J2N9olTUnTzkTdHWZSRJNEYfspSdZS8",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:23:32.307Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J3I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMjkwNTYxMCwiZXhwIjoxNzAyOTkyMDEwfQ.jEosWCL_09y_J2N9olTUnTzkTdHWZSRJNEYfspSdZS8",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:23:38.910Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J3I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMjkwNTYxMCwiZXhwIjoxNzAyOTkyMDEwfQ.jEosWCL_09y_J2N9olTUnTzkTdHWZSRJNEYfspSdZS8",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:23:51.206Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J3I5U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:24:23.192Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J4I2U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/0",
+    "time": "2023-12-20T15:24:31.233Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J4I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/0",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot GET /dev/api/auth/logout-user/0",
+    "time": "2023-12-20T15:24:32.110Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J4I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/0",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 0
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:24:40.190Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J4I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:26:03.454Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J6I0U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:28:34.088Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J8I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:30:40.455Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J0I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot POST /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:38:31.517Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J8I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot POST /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:38:44.465Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J8I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot POST /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:38:55.960Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J8I5U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 404,
+    "message": "Cannot POST /dev/api/auth/logout-user/1",
+    "time": "2023-12-20T15:38:58.127Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J8I5U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 409,
+    "message": "user already exist User",
+    "time": "2023-12-20T15:39:26.823Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J9I2U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:40:38.751Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J0I3U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:40:49.131Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J0I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:41:02.311Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J1I0U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:41:06.573Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J1I0U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:41:07.265Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J1I0U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:41:07.658Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J1I0U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:41:19.391Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J1I1U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 500,
+    "message": "Response from service is falsy",
+    "time": "2023-12-20T15:42:59.926Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J2I5U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 409,
+    "message": "user already exist User",
+    "time": "2023-12-20T15:45:21.665Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J5I2U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  },
+  {
+    "statusCode": 401,
+    "message": "اساعدك؟",
+    "time": "2023-12-20T15:45:28.650Z",
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J5I2U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    }
+  }
+]

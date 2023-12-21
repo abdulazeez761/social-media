@@ -49,8 +49,8 @@ export class UsersService {
     let length = this.users.length;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const isUserExist = this.findUserByEmail(email);
-    if (isUserExist)
+    const foundedUser = this.findUserByEmail(email);
+    if (foundedUser)
       throw new HttpException(
         this.i18nService.translate('shared.errors.userAlreadyExist', {
           args: {

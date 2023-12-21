@@ -9,13 +9,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ResponseMappingInterceptor = void 0;
 const common_1 = require("@nestjs/common");
 const rxjs_1 = require("rxjs");
-const response_validator_util_1 = require("../../shared/interfaces/http/response-validator.util");
+const response_validator_interface_1 = require("../../shared/interfaces/http/response-validator.interface");
 let ResponseMappingInterceptor = class ResponseMappingInterceptor {
     intercept(context, next) {
         const ctx = context.switchToHttp();
         const response = ctx.getResponse();
         return next.handle().pipe((0, rxjs_1.map)((responseFromService) => {
-            (0, response_validator_util_1.isResponseFromService)(responseFromService);
+            (0, response_validator_interface_1.isResponseFromService)(responseFromService);
             const { data, httpStatus, message } = responseFromService;
             const responseFromApp = {
                 data,

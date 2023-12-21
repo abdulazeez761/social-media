@@ -9,5 +9,5 @@ export declare class LogoutService {
     private readonly userService;
     private readonly i18nService;
     constructor(cacheService: CacheService, userService: UsersService, i18nService: I18nService<I18nTranslations>);
-    logUserOut(id: number): Promise<ResponseFromServiceI<User>>;
+    logUserOut(userID: number): Promise<ResponseFromServiceI<User>>;
 }

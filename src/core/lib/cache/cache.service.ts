@@ -2,6 +2,7 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { Field } from './types/field.type';
+import { CacheObjectI } from '../../../shared/interfaces/general/cache-object.interface';
 
 @Injectable()
 export class CacheService {
@@ -11,12 +12,12 @@ export class CacheService {
     return this.cacheManager.set(key, value, ttl);
   }
 
-  get<T>(key: string) {
-    return this.cacheManager.get<T>(key);
+  get<CacheObjectI>(key: string) {
+    return this.cacheManager.get<CacheObjectI>(key);
   }
 
   async deleteField(key: string, field: Field) {
-    const keyFromCache = (await this.get(key)) as { [key: string]: string };
+    const keyFromCache = await this.get<CacheObjectI>(key);
     if (!keyFromCache)
       throw new HttpException(
         'Field ' + field + ' Does not exist',
@@ -31,10 +32,7 @@ export class CacheService {
   }
 
   async getField(key: string, field: Field) {
-    const userFromCache = await this.get<{
-      accessToken: string;
-      userID: string;
-    }>(key);
+    const userFromCache = await this.get<CacheObjectI>(key);
     if (!userFromCache)
       throw new HttpException(
         'Field ' + field + ' Does not exist',

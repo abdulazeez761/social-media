@@ -14,9 +14,9 @@ export class LogoutService {
     private readonly i18nService: I18nService<I18nTranslations>,
   ) {}
 
-  async logUserOut(id: number): Promise<ResponseFromServiceI<User>> {
-    await this.cacheService.deleteField(id + '', 'accessToken');
-    const logedOutUser = this.userService.findOne(id).data;
+  async logUserOut(userID: number): Promise<ResponseFromServiceI<User>> {
+    await this.cacheService.deleteField(userID + '', 'accessToken');
+    const logedOutUser = this.userService.findOne(userID).data;
     return {
       message: this.i18nService.t('shared.success.logout'),
       httpStatus: HttpStatus.OK,

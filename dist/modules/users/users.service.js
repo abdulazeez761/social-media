@@ -46,8 +46,8 @@ let UsersService = class UsersService {
         const { password, email } = createUserDto;
         let length = this.users.length;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const isUserExist = this.findUserByEmail(email);
-        if (isUserExist)
+        const foundedUser = this.findUserByEmail(email);
+        if (foundedUser)
             throw new common_2.HttpException(this.i18nService.translate('shared.errors.userAlreadyExist', {
                 args: {
                     entity: this.i18nService.translate('entities.user'),

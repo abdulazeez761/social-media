@@ -3,6 +3,7 @@ import { LogUserInDto } from './dto/log-user-in.dto';
 import { LoginService } from './login.service';
 import { RegisterService } from './register.service';
 import { LogoutService } from './logout.service';
+import { RequestI } from 'shared/interfaces/http/request.interface';
 export declare class AuthController {
     private readonly loginService;
     private readonly registerService;
@@ -10,5 +11,5 @@ export declare class AuthController {
     constructor(loginService: LoginService, registerService: RegisterService, logoutServiec: LogoutService);
     registerUser(createUserDto: CreateUserDto): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
     logUserIn(logUserInDto: LogUserInDto): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<string>>;
-    logUserOut(userID: number): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
+    logUserOut(req: RequestI): Promise<import("../../shared/interfaces/general/response-from-service.interface").ResponseFromServiceI<import("../users/entities/user.entity").User>>;
 }

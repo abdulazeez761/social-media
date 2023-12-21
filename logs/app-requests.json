@@ -80,5 +80,412 @@
       "requestDuration": 0.003,
       "REQUEST_ID_TOKEN_HEADER": "e0y3J1h-b8G1c:i3O1i.J8IZ"
     }
+  },
+  {
+    "request": {
+      "id": "au@,g1m aei l0.3c2o:m1",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.059
+    }
+  },
+  {
+    "request": {
+      "id": "au@,g1m aei l0.3c2o:m2",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMjkwNTYxMCwiZXhwIjoxNzAyOTkyMDEwfQ.jEosWCL_09y_J2N9olTUnTzkTdHWZSRJNEYfspSdZS8",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.051
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m3",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.057
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m3",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.056
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m3",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.05
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m8",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.056
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m8",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NTgxMCwiZXhwIjoxNzAzMTcyMjEwfQ.04U_IhOjrgeJ9sc7A3hEGojiZeinaSwPiyGorCYU0dk",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.051
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m0",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.056
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m0",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.054
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m1",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.057
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m1",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.051
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m1",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.051
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m1",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4Njg0NywiZXhwIjoxNzAzMTczMjQ3fQ.lArizMLy7i9NMtQ9LT8y4aQBK3kINDhMjeX4Srt-XRA",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.05
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m5",
+      "path": "/dev/api/auth/register-user",
+      "body": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {
+        "lang": "en"
+      },
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 201,
+      "message": "Successfully added a new User",
+      "requestDuration": 0.055
+    }
+  },
+  {
+    "request": {
+      "id": "ae@,g2m aei l0.3c1o:m5",
+      "path": "/dev/api/auth/login-user",
+      "body": {
+        "email": "a@gmail.com",
+        "password": "aaaaa!aaAaaaaa"
+      },
+      "token": "",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {},
+      "method": 1
+    },
+    "response": {
+      "data": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NzEyNiwiZXhwIjoxNzAzMTczNTI2fQ.ukREwT4P1l1XvXuWIgO6_8WD4EhSLF0LTqynUwZVoPI",
+      "httpStatus": 200,
+      "message": "logged in successfully",
+      "requestDuration": 0.053
+    }
+  },
+  {
+    "request": {
+      "id": "eey,J2h beG c0i3O1i:J5I4U zMIundefined",
+      "path": "/dev/api/auth/logout-user/1",
+      "body": {},
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcwMzA4NzEyNiwiZXhwIjoxNzAzMTczNTI2fQ.ukREwT4P1l1XvXuWIgO6_8WD4EhSLF0LTqynUwZVoPI",
+      "lang": "en",
+      "queryParams": {},
+      "routeParams": {
+        "userID": "1"
+      },
+      "method": 1
+    },
+    "response": {
+      "data": {
+        "username": "Avdula13",
+        "email": "a@gmail.com",
+        "gender": 1,
+        "birthday": "2020-07-10T15:00:00.000",
+        "id": 1
+      },
+      "httpStatus": 200,
+      "message": "Successfully logged out ",
+      "requestDuration": 0.001
+    }
   }
 ]

@@ -7,7 +7,7 @@ import {
 import { Response } from 'express';
 import { map, Observable } from 'rxjs';
 import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
-import { isResponseFromService } from 'shared/interfaces/http/response-validator.util';
+import { isResponseFromService } from 'shared/interfaces/http/response-validator.interface';
 
 @Injectable()
 export class ResponseMappingInterceptor
@@ -23,6 +23,7 @@ export class ResponseMappingInterceptor
     return next.handle().pipe(
       map((responseFromService) => {
         isResponseFromService(responseFromService);
+
         const { data, httpStatus, message } = responseFromService;
         const responseFromApp: ResponseFromServiceI = {
           data,

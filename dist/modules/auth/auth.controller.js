@@ -36,7 +36,8 @@ let AuthController = class AuthController {
     logUserIn(logUserInDto) {
         return this.loginService.logUserIn(logUserInDto);
     }
-    logUserOut(userID) {
+    logUserOut(req) {
+        const userID = req.user.sub;
         return this.logoutServiec.logUserOut(userID);
     }
 };
@@ -61,10 +62,10 @@ __decorate([
 ], AuthController.prototype, "logUserIn", null);
 __decorate([
     (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
-    (0, common_1.Get)(routes_constant_1.ROUTES.AUTH.LOG_USER_OUT),
-    __param(0, (0, common_1.Param)('userID', common_1.ParseIntPipe)),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.LOG_USER_OUT),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logUserOut", null);
 exports.AuthController = AuthController = __decorate([

@@ -10,12 +10,12 @@ exports.RequestIdMiddleware = void 0;
 const common_1 = require("@nestjs/common");
 const cuid2_1 = require("@paralleldrive/cuid2");
 const general_constant_1 = require("../../shared/constants/general.constant");
-const requestID_generator_util_1 = require("../../shared/interfaces/http/requestID-generator.util");
+const requestID_generator_util_1 = require("../../shared/util/requestID-generator.util");
 let RequestIdMiddleware = class RequestIdMiddleware {
     use(req, res, next) {
         const requestID = req.header(general_constant_1.REQUEST_ID_TOKEN_HEADER);
         const authorization = req.headers.authorization;
-        const date = new Date().toISOString();
+        const date = new Date().toUTCString();
         const isTokenOrEmail = authorization
             ? authorization?.split(' ')[1]
             : req.body.email;

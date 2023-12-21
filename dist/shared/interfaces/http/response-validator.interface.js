@@ -17,4 +17,4 @@ function isResponseFromService(responseFromService) {
     }
 }
 exports.isResponseFromService = isResponseFromService;
-//# sourceMappingURL=response-validator.util.js.map
+//# sourceMappingURL=response-validator.interface.js.map

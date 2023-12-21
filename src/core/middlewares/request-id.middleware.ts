@@ -2,7 +2,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common';
 import { createId, isCuid } from '@paralleldrive/cuid2';
 import { NextFunction, Request, Response } from 'express';
 import { REQUEST_ID_TOKEN_HEADER } from 'shared/constants/general.constant';
-import { requestIdGenerator } from 'shared/interfaces/http/requestID-generator.util';
+import { requestIdGenerator } from 'shared/util/requestID-generator.util';
 
 @Injectable()
 export class RequestIdMiddleware implements NestMiddleware {
@@ -10,7 +10,7 @@ export class RequestIdMiddleware implements NestMiddleware {
     const requestID = req.header(REQUEST_ID_TOKEN_HEADER);
     const authorization = req.headers.authorization;
 
-    const date = new Date().toISOString();
+    const date = new Date().toUTCString();
     const isTokenOrEmail = authorization
       ? authorization?.split(' ')[1]
       : req.body.email;

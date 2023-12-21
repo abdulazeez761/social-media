@@ -12,6 +12,7 @@ import { IS_PUBLIC_KEY } from 'core/decorator/public.decorator';
 import { DecodedTokenI } from 'shared/interfaces/http/decoded-token.interface';
 import { RequestI } from 'shared/interfaces/http/request.interface';
 import { ConfigService } from '@nestjs/config';
+import { CacheObjectI } from 'shared/interfaces/general/cache-object.interface';
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
   constructor(
@@ -50,10 +51,7 @@ export class AccessTokenGuard implements CanActivate {
       });
       const { sub } = decodedToken;
 
-      const userFromCache = await this.cacheService.get<{
-        accessToken: string;
-        userID: string;
-      }>(sub + '');
+      const userFromCache = await this.cacheService.get<CacheObjectI>(sub + '');
 
       const isRecivedTokenExisttInCache =
         userFromCache?.accessToken === accesToken;
