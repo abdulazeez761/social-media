@@ -1,28 +1,18 @@
-import { HttpStatus } from '@nestjs/common';
+import { CacheService } from 'core/lib/cache/cache.service';
+import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { CacheService } from 'src/core/lib/cache/cache.service';
+import { Repository } from 'typeorm';
+import { FilterUsersDto } from './dto/filter-users.dto';
 export declare class UsersService {
     private readonly cacheService;
-    constructor(cacheService: CacheService);
-    users: User[];
-    createuserForAuth(createUserDto: any): void;
-    findUserByEmail(email: string): User;
-    create(createUserDto: CreateUserDto): Promise<{
-        statusCode: HttpStatus;
-        message: string;
-    }>;
-    findAll(): User[];
-    findOne(id: number): User;
-    update(id: number, updateUserDto: UpdateUserDto): {
-        data: User;
-        message: string;
-        statusCode: HttpStatus;
-    };
-    remove(id: number): {
-        data: User;
-        message: string;
-        statusCode: HttpStatus;
-    };
+    private usersRepository;
+    constructor(cacheService: CacheService, usersRepository: Repository<User>);
+    createUserForAuth(createUserDto: CreateUserDto): Promise<User>;
+    findAll(filterUsersDto: FilterUsersDto): Promise<ResponseFromServiceI<User[]>>;
+    findOne(id: string): Promise<ResponseFromServiceI<User>>;
+    update(id: string, updateUserDto: UpdateUserDto): Promise<ResponseFromServiceI<User>>;
+    remove(id: string): Promise<ResponseFromServiceI<User>>;
+    findUserByEmail(email: string): Promise<User | null>;
 }

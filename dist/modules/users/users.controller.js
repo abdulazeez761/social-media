@@ -15,66 +15,62 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
-const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const decorators_1 = require("@nestjs/swagger/dist/decorators");
+const routes_constant_1 = require("../../shared/constants/routes.constant");
+const user_id_decorator_1 = require("../../core/decorators/user-id.decorator");
+const filter_users_dto_1 = require("./dto/filter-users.dto");
 let UsersController = class UsersController {
+    usersService;
     constructor(usersService) {
         this.usersService = usersService;
     }
-    create(createUserDto) {
-        return this.usersService.create(createUserDto);
+    findAll(filterUsersDto) {
+        return this.usersService.findAll(filterUsersDto);
     }
-    findAll() {
-        return this.usersService.findAll();
+    findOne(userID) {
+        return this.usersService.findOne(userID);
     }
-    findOne(id) {
-        return this.usersService.findOne(id);
+    update(userID, updateUserDto) {
+        return this.usersService.update(userID, updateUserDto);
     }
-    update(id, updateUserDto) {
-        return this.usersService.update(id, updateUserDto);
-    }
-    remove(id) {
-        return this.usersService.remove(id);
+    remove(userID) {
+        return this.usersService.remove(userID);
     }
 };
 exports.UsersController = UsersController;
 __decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.Get)(routes_constant_1.ROUTES.USERS.FIND_ALL),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [filter_users_dto_1.FilterUsersDto]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Get)(routes_constant_1.ROUTES.USERS.FIND_ONE),
+    __param(0, (0, user_id_decorator_1.UserID)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Patch)(routes_constant_1.ROUTES.USERS.UPDATE_ONE),
+    __param(0, (0, user_id_decorator_1.UserID)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_user_dto_1.UpdateUserDto]),
+    __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "update", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Delete)(routes_constant_1.ROUTES.USERS.DELETE_ONE),
+    __param(0, (0, user_id_decorator_1.UserID)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
 exports.UsersController = UsersController = __decorate([
-    (0, common_1.Controller)('users'),
+    (0, decorators_1.ApiTags)(routes_constant_1.ROUTES.USERS.CONTROLLER),
+    (0, common_1.Controller)(routes_constant_1.ROUTES.USERS.CONTROLLER),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map

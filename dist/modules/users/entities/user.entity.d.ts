@@ -1,14 +1,10 @@
-import { Gender } from 'src/shared/enums/gender.enum';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
-export declare class User {
-    id: number;
+import { Base } from 'shared/entities/base.entity';
+import { Gender } from 'shared/enums/gender.enum';
+export declare class User extends Base {
     username: string;
     email: string;
     password: string;
     gender: Gender;
     birthday: string;
-    city: string;
-    constructor(createUserDto: CreateUserDto);
-    updateOne(updateUserDto: UpdateUserDto): void;
+    city?: string;
 }

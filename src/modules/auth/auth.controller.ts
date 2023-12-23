@@ -1,38 +1,44 @@
-import { Controller, Post, Body, UseInterceptors, Req, Get, ParseIntPipe, Param } from '@nestjs/common';
-import { Request } from 'express';
-import { AuthService } from './auth.service';
-import { CreateUserDto } from '../users/dto/create-user.dto';
+import { Body, Controller, Post, Req } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist';
+import { ApiResponse } from '@nestjs/swagger/dist/decorators';
+import { Public } from 'core/decorators/public.decorator';
+import { CreateUserDto } from 'modules/users/dto/create-user.dto';
+import { ROUTES } from 'shared/constants/routes.constant';
+import { RequestI } from 'shared/interfaces/http/request.interface';
+import { registerRouteApiResponse } from './constants/register-route-api-response.conatant';
 import { LogUserInDto } from './dto/log-user-in.dto';
-import { Public } from 'src/core/decorator/public.decorator';
-import { LoggingInterceptor } from 'src/core/Interceptors/just-for-testing.interseptor';
-@Public()
-// @UseInterceptors(LoggingInterceptor)
-@Controller('auth')
+import { LoginService } from './login.service';
+import { LogoutService } from './logout.service';
+import { RegisterService } from './register.service';
+
+@ApiTags(ROUTES.AUTH.CONTROLLER)
+@Controller(ROUTES.AUTH.CONTROLLER)
 export class AuthController {
   constructor(
-    private readonly authService: AuthService,
+    private readonly loginService: LoginService,
+    private readonly registerService: RegisterService,
+    private readonly logoutService: LogoutService,
+  ) {}
 
-  ) { }
-  @Post('register-user')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.authService.create(createUserDto)
+  @Public()
+  @ApiResponse(registerRouteApiResponse)
+  @Post(ROUTES.AUTH.REGISTER_USER)
+  registerUser(@Body() createUserDto: CreateUserDto) {
+    try {
+      return this.registerService.registerUser(createUserDto);
+    } catch (error: any) {
+      return error.message;
+    }
   }
 
   @Public()
-  // @UseInterceptors(LoggingInterceptor)
-  @Post('login-user')
-  loginUserIn(@Body() logUserInDto: LogUserInDto) {
-    return this.authService.logUserIn(logUserInDto)
+  @Post(ROUTES.AUTH.LOG_USER_IN)
+  logUserIn(@Body() logUserInDto: LogUserInDto) {
+    return this.loginService.logUserIn(logUserInDto);
   }
 
-  @Get("logout-user/:id")
-  logUserOut(@Param('id', ParseIntPipe) id: number) {
-    return this.authService.logUserOut(id)
-
+  @Post(ROUTES.AUTH.LOG_OUT)
+  logUserOut(@Req() request: RequestI) {
+    return this.logoutService.logUserOut(request.user.sub);
   }
-
 }
-// function Get(arg0: string): (target: AuthController, propertyKey: "logUserOut", descriptor: TypedPropertyDescriptor<(req: any) => any>) => void | TypedPropertyDescriptor<(req: any) => any> {
-//   throw new Error('Function not implemented.');
-// }
-

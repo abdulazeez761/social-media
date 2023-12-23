@@ -14,50 +14,70 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
-const auth_service_1 = require("./auth.service");
+const dist_1 = require("@nestjs/swagger/dist");
+const decorators_1 = require("@nestjs/swagger/dist/decorators");
+const public_decorator_1 = require("../../core/decorators/public.decorator");
 const create_user_dto_1 = require("../users/dto/create-user.dto");
+const routes_constant_1 = require("../../shared/constants/routes.constant");
+const register_route_api_response_conatant_1 = require("./constants/register-route-api-response.conatant");
 const log_user_in_dto_1 = require("./dto/log-user-in.dto");
-const public_decorator_1 = require("../../core/decorator/public.decorator");
+const login_service_1 = require("./login.service");
+const logout_service_1 = require("./logout.service");
+const register_service_1 = require("./register.service");
 let AuthController = class AuthController {
-    constructor(authService) {
-        this.authService = authService;
+    loginService;
+    registerService;
+    logoutService;
+    constructor(loginService, registerService, logoutService) {
+        this.loginService = loginService;
+        this.registerService = registerService;
+        this.logoutService = logoutService;
     }
-    create(createUserDto) {
-        return this.authService.create(createUserDto);
+    registerUser(createUserDto) {
+        try {
+            return this.registerService.registerUser(createUserDto);
+        }
+        catch (error) {
+            return error.message;
+        }
     }
-    loginUserIn(logUserInDto) {
-        return this.authService.logUserIn(logUserInDto);
+    logUserIn(logUserInDto) {
+        return this.loginService.logUserIn(logUserInDto);
     }
-    logUserOut(id) {
-        return this.authService.logUserOut(id);
+    logUserOut(request) {
+        return this.logoutService.logUserOut(request.user.sub);
     }
 };
 exports.AuthController = AuthController;
 __decorate([
-    (0, common_1.Post)('register-user'),
+    (0, public_decorator_1.Public)(),
+    (0, decorators_1.ApiResponse)(register_route_api_response_conatant_1.registerRouteApiResponse),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.REGISTER_USER),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "create", null);
+], AuthController.prototype, "registerUser", null);
 __decorate([
     (0, public_decorator_1.Public)(),
-    (0, common_1.Post)('login-user'),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.LOG_USER_IN),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [log_user_in_dto_1.LogUserInDto]),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "loginUserIn", null);
+], AuthController.prototype, "logUserIn", null);
 __decorate([
-    (0, common_1.Get)("logout-user/:id"),
-    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.LOG_OUT),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logUserOut", null);
 exports.AuthController = AuthController = __decorate([
-    (0, public_decorator_1.Public)(),
-    (0, common_1.Controller)('auth'),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
+    (0, dist_1.ApiTags)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
+    (0, common_1.Controller)(routes_constant_1.ROUTES.AUTH.CONTROLLER),
+    __metadata("design:paramtypes", [login_service_1.LoginService,
+        register_service_1.RegisterService,
+        logout_service_1.LogoutService])
 ], AuthController);
 //# sourceMappingURL=auth.controller.js.map

@@ -1,27 +1,24 @@
-import { Gender } from 'src/shared/enums/gender.enum';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
+import { Base } from 'shared/entities/base.entity';
+import { Gender } from 'shared/enums/gender.enum';
+import { Column, Entity } from 'typeorm';
 
-export class User {
-  id: number;
+@Entity()
+export class User extends Base {
+  @Column({ type: 'varchar', length: 30, unique: true })
+  username!: string;
 
-  username: string;
+  @Column({ type: 'varchar', length: 320, unique: true })
+  email!: string;
 
-  email: string;
+  @Column({ type: 'varchar' })
+  password!: string;
 
-  password: string;
+  @Column({ type: 'enum', enum: Gender })
+  gender!: Gender;
 
-  gender: Gender;
+  @Column({ type: 'varchar', length: 29, nullable: true })
+  birthday!: string;
 
-  birthday: string;
-
-  city: string;
-
-  constructor(createUserDto: CreateUserDto) {
-    Object.assign(this, createUserDto);
-  }
-
-  updateOne(updateUserDto: UpdateUserDto) {
-    Object.assign(this, { ...this, ...updateUserDto });
-  }
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  city?: string;
 }

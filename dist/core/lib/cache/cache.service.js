@@ -13,17 +13,21 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CacheService = void 0;
-const cache_manager_1 = require("@nestjs/cache-manager");
 const common_1 = require("@nestjs/common");
+const cache_manager_1 = require("@nestjs/cache-manager");
 let CacheService = class CacheService {
+    cacheManager;
     constructor(cacheManager) {
         this.cacheManager = cacheManager;
     }
     set(key, value, ttl) {
-        this.cacheManager.set(key, value, ttl);
+        return this.cacheManager.set(key, value, ttl);
     }
     get(key) {
         return this.cacheManager.get(key);
+    }
+    del(key) {
+        return this.cacheManager.del(key);
     }
     async deleteField(key, field) {
         const keyFromCache = await this.get(key);
@@ -32,14 +36,11 @@ let CacheService = class CacheService {
         delete keyFromCache[field];
         return this.set(key, keyFromCache);
     }
-    deleteUserFromCache(key) {
-        return this.cacheManager.del(key);
-    }
     async getField(key, field) {
-        const userFromCache = await this.get(key);
-        if (!userFromCache)
+        const fieldFromCache = await this.get(key);
+        if (!fieldFromCache)
             throw new common_1.HttpException('Field ' + field + ' Does not exist', common_1.HttpStatus.INTERNAL_SERVER_ERROR);
-        return userFromCache.accessToken;
+        return fieldFromCache[field];
     }
 };
 exports.CacheService = CacheService;

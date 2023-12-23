@@ -1,85 +1,123 @@
-import { HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CacheService } from 'core/lib/cache/cache.service';
+import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import * as bcrypt from 'bcrypt';
-import { HttpException } from '@nestjs/common';
-import { CacheService } from 'src/core/lib/cache/cache.service';
-import { Field } from 'src/core/lib/cache/types/field.type';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ILike, IsNull, Not, Repository } from 'typeorm';
+import { FilterUsersDto } from './dto/filter-users.dto';
+import { DynamicObjectI } from 'shared/interfaces/general/dynamic-object.interface';
+
 @Injectable()
 export class UsersService {
   constructor(
-    private readonly cacheService: CacheService
-  ) { }
+    private readonly cacheService: CacheService,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+  ) {}
 
-  users: User[] = [];
-  createuserForAuth(createUserDto) {
-    const { email } = createUserDto
-    const user = this.findUserByEmail(email)
-    if (user) throw new HttpException('user already exist!', HttpStatus.CONFLICT);
-    let length = this.users.length;
-    const createdUser = new User({
-      id: ++length,
-      ...createUserDto,
+  async createUserForAuth(createUserDto: CreateUserDto) {
+    // exception for
+    // const { email } = createUserDto;
+
+    // const user = await this.findUserByEmail(email);
+
+    // if (!!user)
+    //   throw new HttpException(
+    //     'Email already exists, please choose another one',
+    //     HttpStatus.CONFLICT,
+    //   );
+
+    const createdUser = this.usersRepository.create(createUserDto);
+    await this.usersRepository.save(createdUser);
+
+    return createdUser;
+  }
+
+  async findAll(
+    filterUsersDto: FilterUsersDto,
+  ): Promise<ResponseFromServiceI<User[]>> {
+    const { take, skip, email, username } = filterUsersDto;
+    const filterObject: DynamicObjectI = {};
+
+    !email
+      ? (filterObject['email'] = Not(IsNull()))
+      : (filterObject['email'] = ILike(`%${email}%`));
+
+    !username
+      ? (filterObject['username'] = Not(IsNull()))
+      : (filterObject['username'] = ILike(`%${username}%`));
+
+    const users = await this.usersRepository.find({
+      select: ['id', 'username', 'city', 'gender', 'email', '__V'],
+      where: [filterObject],
+      take,
+      skip,
     });
-    this.users.push(createdUser);
+    return {
+      data: users,
+      httpStatus: HttpStatus.OK,
+      message: {
+        translationKey: 'shared.success.findAll',
+        args: { entity: 'entities.user' },
+      },
+    };
+  }
+
+  async findOne(id: string): Promise<ResponseFromServiceI<User>> {
+    const user = await this.usersRepository.findOneBy({ id });
+    if (!user) throw new HttpException('user not found', HttpStatus.NOT_FOUND);
+    return {
+      data: user,
+      httpStatus: HttpStatus.OK,
+      message: {
+        translationKey: 'shared.success.findOne',
+        args: { entity: 'entities.user' },
+      },
+    };
+  }
+
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<ResponseFromServiceI<User>> {
+    const updateResult = await this.usersRepository.update(
+      { id },
+      updateUserDto,
+    );
+
+    if (!updateResult.affected)
+      throw new HttpException('user not found', HttpStatus.NOT_FOUND);
+
+    return {
+      data: updateResult.raw,
+      message: {
+        translationKey: 'shared.success.update',
+        args: { entity: 'entities.user' },
+      },
+      httpStatus: HttpStatus.OK,
+    };
+  }
+
+  async remove(id: string): Promise<ResponseFromServiceI<User>> {
+    const deleteResult = await this.usersRepository.delete({ id });
+    if (!deleteResult.affected)
+      throw new HttpException('User was not found', HttpStatus.NOT_FOUND);
+
+    this.cacheService.del(id + '');
+    return {
+      data: deleteResult.raw,
+      message: {
+        translationKey: 'shared.success.delete',
+        args: { entity: 'entities.user' },
+      },
+      httpStatus: HttpStatus.OK,
+    };
   }
 
   findUserByEmail(email: string) {
-    return this.users.find((user) => user.email === email)
+    const user = this.usersRepository.findOneBy({ email });
+    return user;
   }
-
-  async create(createUserDto: CreateUserDto) {
-    const { password } = createUserDto;
-    let length = this.users.length;
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User({
-      ...createUserDto,
-      id: ++length,
-      password: hashedPassword,
-    });
-    this.users.push(user);
-
-    return {
-      statusCode: HttpStatus.CREATED,
-      message: 'Created User Successfully',
-    };
-  }
-
-  findAll() {
-    return this.users;
-  }
-
-  findOne(id: number) {
-    const user = this.users.find((user) => user.id === id);
-    if (!user) throw new HttpException('user not found', HttpStatus.BAD_REQUEST);
-    return user
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    const user = this.users.find((user) => user.id === id);
-    user.updateOne(updateUserDto);
-    return {
-      data: user,
-      message: 'Updated User Successfully',
-      statusCode: HttpStatus.OK,
-    };
-  }
-
-  remove(id: number) {
-    const user = this.findOne(id)
-    let userID = user.id + '';
-    this.users = this.users.filter((user) => user.id !== id);
-    // this.cacheService.deleteField(userID, 'accessToken');
-    this.cacheService.deleteUserFromCache(userID)
-    return {
-      data: user,
-      message: 'Deleted User Successfully!',
-      statusCode: HttpStatus.OK,
-    };
-
-  }
-
-
 }

@@ -8,15 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var CacheModule_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CacheModule = void 0;
-const common_1 = require("@nestjs/common");
 const cache_manager_1 = require("@nestjs/cache-manager");
-const app_options_1 = require("../../../shared/config/app.options");
+const common_1 = require("@nestjs/common");
+const app_option_1 = require("../../../shared/configs/app.option");
 const cache_service_1 = require("./cache.service");
 let CacheModule = CacheModule_1 = class CacheModule {
     static register(_storeName) {
         return {
             providers: [cache_service_1.CacheService],
-            imports: [cache_manager_1.CacheModule.registerAsync(app_options_1.cacheManagerOptions)],
+            imports: [cache_manager_1.CacheModule.registerAsync(app_option_1.cacheManagerOptions)],
             exports: [cache_service_1.CacheService],
             module: CacheModule_1,
         };

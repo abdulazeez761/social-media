@@ -1,44 +1,45 @@
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
+import { CacheObjectI } from './interfaces/cache-object.interface';
 import { Field } from './types/field.type';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()
 export class CacheService {
-    constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) { }
+  constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-    set(key: string, value: object | string, ttl?: number) {
-        this.cacheManager.set(key, value, ttl);
-    }
+  set(key: string, value: object | string, ttl?: number) {
+    return this.cacheManager.set(key, value, ttl);
+  }
 
-    get<T>(key: string) {
-        return this.cacheManager.get<T>(key);
-    }
+  get<CacheObjectI>(key: string) {
+    return this.cacheManager.get<CacheObjectI>(key);
+  }
 
-    async deleteField(key: string, field: Field) {
-        const keyFromCache = await this.get(key) as { [key: string]: string };
-        if (!keyFromCache) throw new HttpException(
-            'Field ' + field + ' Does not exist',
-            HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-        delete keyFromCache[field];
-        return this.set(key, keyFromCache);
-    }
+  del(key: string) {
+    return this.cacheManager.del(key);
+  }
 
-    deleteUserFromCache(key: string) {
-        return this.cacheManager.del(key)
-    }
+  async deleteField(key: string, field: Field) {
+    const keyFromCache = await this.get<CacheObjectI>(key);
+    if (!keyFromCache)
+      throw new HttpException(
+        'Field ' + field + ' Does not exist',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
 
-    async getField(key: string, field: Field) {
-        const userFromCache = await this.get<{
-            accessToken: string;
-            userID: string;
-        }>(key)
-        if (!userFromCache) throw new HttpException(
-            'Field ' + field + ' Does not exist',
-            HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-        return userFromCache.accessToken
-    }
+    delete keyFromCache[field];
+    return this.set(key, keyFromCache);
+  }
 
+  async getField(key: string, field: Field) {
+    const fieldFromCache = await this.get<CacheObjectI>(key);
+
+    if (!fieldFromCache)
+      throw new HttpException(
+        'Field ' + field + ' Does not exist',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    return fieldFromCache[field];
+  }
 }

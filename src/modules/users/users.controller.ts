@@ -1,46 +1,37 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  ParseIntPipe,
-} from '@nestjs/common';
+import { Controller, Get, Body, Patch, Delete, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-@Controller('users')
+import { ApiTags } from '@nestjs/swagger/dist/decorators';
+import { ROUTES } from 'shared/constants/routes.constant';
+import { UserID } from 'core/decorators/user-id.decorator';
+import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
+import { User } from './entities/user.entity';
+import { FilterUsersDto } from './dto/filter-users.dto';
+
+@ApiTags(ROUTES.USERS.CONTROLLER)
+@Controller(ROUTES.USERS.CONTROLLER)
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  @Get(ROUTES.USERS.FIND_ALL)
+  findAll(
+    @Query() filterUsersDto: FilterUsersDto,
+  ): Promise<ResponseFromServiceI<User[]>> {
+    return this.usersService.findAll(filterUsersDto);
   }
 
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
+  @Get(ROUTES.USERS.FIND_ONE)
+  findOne(@UserID() userID: string) {
+    return this.usersService.findOne(userID);
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
+  @Patch(ROUTES.USERS.UPDATE_ONE)
+  update(@UserID() userID: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(userID, updateUserDto);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.usersService.update(id, updateUserDto);
+  @Delete(ROUTES.USERS.DELETE_ONE)
+  remove(@UserID() userID: string) {
+    return this.usersService.remove(userID);
   }
-
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(id);
-  }
-
 }

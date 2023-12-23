@@ -8,81 +8,102 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const user_entity_1 = require("./entities/user.entity");
-const bcrypt = require("bcrypt");
-const common_2 = require("@nestjs/common");
 const cache_service_1 = require("../../core/lib/cache/cache.service");
+const user_entity_1 = require("./entities/user.entity");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
 let UsersService = class UsersService {
-    constructor(cacheService) {
+    cacheService;
+    usersRepository;
+    constructor(cacheService, usersRepository) {
         this.cacheService = cacheService;
-        this.users = [];
+        this.usersRepository = usersRepository;
     }
-    createuserForAuth(createUserDto) {
-        const { email } = createUserDto;
-        const user = this.findUserByEmail(email);
-        if (user)
-            throw new common_2.HttpException('user already exist!', common_1.HttpStatus.CONFLICT);
-        let length = this.users.length;
-        const createdUser = new user_entity_1.User({
-            id: ++length,
-            ...createUserDto,
+    async createUserForAuth(createUserDto) {
+        const createdUser = this.usersRepository.create(createUserDto);
+        await this.usersRepository.save(createdUser);
+        return createdUser;
+    }
+    async findAll(filterUsersDto) {
+        const { take, skip, email, username } = filterUsersDto;
+        const filterObject = {};
+        !email
+            ? (filterObject['email'] = (0, typeorm_2.Not)((0, typeorm_2.IsNull)()))
+            : (filterObject['email'] = (0, typeorm_2.ILike)(`%${email}%`));
+        !username
+            ? (filterObject['username'] = (0, typeorm_2.Not)((0, typeorm_2.IsNull)()))
+            : (filterObject['username'] = (0, typeorm_2.ILike)(`%${username}%`));
+        const users = await this.usersRepository.find({
+            select: ['id', 'username', 'city', 'gender', 'email', '__V'],
+            where: [filterObject],
+            take,
+            skip,
         });
-        this.users.push(createdUser);
+        return {
+            data: users,
+            httpStatus: common_1.HttpStatus.OK,
+            message: {
+                translationKey: 'shared.success.findAll',
+                args: { entity: 'entities.user' },
+            },
+        };
+    }
+    async findOne(id) {
+        const user = await this.usersRepository.findOneBy({ id });
+        if (!user)
+            throw new common_1.HttpException('user not found', common_1.HttpStatus.NOT_FOUND);
+        return {
+            data: user,
+            httpStatus: common_1.HttpStatus.OK,
+            message: {
+                translationKey: 'shared.success.findOne',
+                args: { entity: 'entities.user' },
+            },
+        };
+    }
+    async update(id, updateUserDto) {
+        const updateResult = await this.usersRepository.update({ id }, updateUserDto);
+        if (!updateResult.affected)
+            throw new common_1.HttpException('user not found', common_1.HttpStatus.NOT_FOUND);
+        return {
+            data: updateResult.raw,
+            message: {
+                translationKey: 'shared.success.update',
+                args: { entity: 'entities.user' },
+            },
+            httpStatus: common_1.HttpStatus.OK,
+        };
+    }
+    async remove(id) {
+        const deleteResult = await this.usersRepository.delete({ id });
+        if (!deleteResult.affected)
+            throw new common_1.HttpException('User was not found', common_1.HttpStatus.NOT_FOUND);
+        this.cacheService.del(id + '');
+        return {
+            data: deleteResult.raw,
+            message: {
+                translationKey: 'shared.success.delete',
+                args: { entity: 'entities.user' },
+            },
+            httpStatus: common_1.HttpStatus.OK,
+        };
     }
     findUserByEmail(email) {
-        return this.users.find((user) => user.email === email);
-    }
-    async create(createUserDto) {
-        const { password } = createUserDto;
-        let length = this.users.length;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new user_entity_1.User({
-            ...createUserDto,
-            id: ++length,
-            password: hashedPassword,
-        });
-        this.users.push(user);
-        return {
-            statusCode: common_1.HttpStatus.CREATED,
-            message: 'Created User Successfully',
-        };
-    }
-    findAll() {
-        return this.users;
-    }
-    findOne(id) {
-        const user = this.users.find((user) => user.id === id);
-        if (!user)
-            throw new common_2.HttpException('user not found', common_1.HttpStatus.BAD_REQUEST);
+        const user = this.usersRepository.findOneBy({ email });
         return user;
-    }
-    update(id, updateUserDto) {
-        const user = this.users.find((user) => user.id === id);
-        user.updateOne(updateUserDto);
-        return {
-            data: user,
-            message: 'Updated User Successfully',
-            statusCode: common_1.HttpStatus.OK,
-        };
-    }
-    remove(id) {
-        const user = this.findOne(id);
-        let userID = user.id + '';
-        this.users = this.users.filter((user) => user.id !== id);
-        this.cacheService.deleteUserFromCache(userID);
-        return {
-            data: user,
-            message: 'Deleted User Successfully!',
-            statusCode: common_1.HttpStatus.OK,
-        };
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [cache_service_1.CacheService])
+    __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [cache_service_1.CacheService,
+        typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
