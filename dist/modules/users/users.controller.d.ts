@@ -9,5 +9,5 @@ export declare class UsersController {
     findAll(filterUsersDto: FilterUsersDto): Promise<ResponseFromServiceI<User[]>>;
     findOne(userID: string): Promise<ResponseFromServiceI<User>>;
     update(userID: string, updateUserDto: UpdateUserDto): Promise<ResponseFromServiceI<User>>;
-    remove(userID: string): Promise<ResponseFromServiceI<User>>;
+    remove(userID: string): Promise<ResponseFromServiceI<number>>;
 }

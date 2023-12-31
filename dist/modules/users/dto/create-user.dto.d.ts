@@ -5,5 +5,4 @@ export declare class CreateUserDto {
     password: string;
     gender: Gender;
     birthday: string;
-    city?: string;
 }

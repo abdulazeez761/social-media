@@ -1,6 +1,7 @@
+import { Post } from 'modules/posts/entities/post.entity';
 import { Base } from 'shared/entities/base.entity';
 import { Gender } from 'shared/enums/gender.enum';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity()
 export class User extends Base {
@@ -16,9 +17,9 @@ export class User extends Base {
   @Column({ type: 'enum', enum: Gender })
   gender!: Gender;
 
-  @Column({ type: 'varchar', length: 29, nullable: true })
+  @Column({ type: 'varchar', length: 29 })
   birthday!: string;
 
-  @Column({ type: 'varchar', length: 100, nullable: true })
-  city?: string;
+  @OneToMany(() => Post, (post) => post.author)
+  posts!: Post[];
 }

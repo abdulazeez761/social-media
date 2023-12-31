@@ -21,7 +21,7 @@ class IsContainsLowercaseValidator implements ValidatorConstraintInterface {
 }
 
 export const IsContainsLowercase = (validationOptions: ValidationOptions) => {
-  return (object: object, propertyName: string) =>
+  return (object: Object, propertyName: string) =>
     registerDecorator({
       target: object.constructor,
       propertyName,

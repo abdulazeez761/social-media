@@ -40,7 +40,7 @@ exports.AppModule = AppModule = __decorate([
             nestjs_i18n_1.I18nModule.forRoot(app_option_1.i18nOptions),
             jwt_1.JwtModule.registerAsync(app_option_1.jwtOptions),
             cache_module_1.CacheModule.register('cache-manager-redis-yet'),
-            typeorm_1.TypeOrmModule.forRootAsync(app_option_1.TypeORMOptions),
+            typeorm_1.TypeOrmModule.forRootAsync(app_option_1.typeORMOptions),
             modules_module_1.ModulesModule,
         ],
         controllers: [],

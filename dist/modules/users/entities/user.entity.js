@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const post_entity_1 = require("../../posts/entities/post.entity");
 const base_entity_1 = require("../../../shared/entities/base.entity");
 const gender_enum_1 = require("../../../shared/enums/gender.enum");
 const typeorm_1 = require("typeorm");
@@ -19,7 +20,7 @@ let User = class User extends base_entity_1.Base {
     password;
     gender;
     birthday;
-    city;
+    posts;
 };
 exports.User = User;
 __decorate([
@@ -39,13 +40,13 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "gender", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 29, nullable: true }),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 29 }),
     __metadata("design:type", String)
 ], User.prototype, "birthday", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 100, nullable: true }),
-    __metadata("design:type", String)
-], User.prototype, "city", void 0);
+    (0, typeorm_1.OneToMany)(() => post_entity_1.Post, (post) => post.author),
+    __metadata("design:type", Array)
+], User.prototype, "posts", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

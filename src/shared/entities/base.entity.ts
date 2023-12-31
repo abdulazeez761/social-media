@@ -1,6 +1,6 @@
 import {
-  CreateDateColumn,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
   UpdateDateColumn,
   VersionColumn,
 } from 'typeorm';
@@ -15,6 +15,6 @@ export abstract class Base {
   @UpdateDateColumn()
   updatedAt!: string;
 
-  @VersionColumn({ default: 1, nullable: true })
-  __V!: number;
+  @VersionColumn()
+  __v!: number;
 }

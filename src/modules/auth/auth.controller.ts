@@ -1,10 +1,10 @@
-import { Body, Controller, Post, Req } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger/dist';
 import { ApiResponse } from '@nestjs/swagger/dist/decorators';
 import { Public } from 'core/decorators/public.decorator';
+import { UserID } from 'core/decorators/user-id.decorator';
 import { CreateUserDto } from 'modules/users/dto/create-user.dto';
 import { ROUTES } from 'shared/constants/routes.constant';
-import { RequestI } from 'shared/interfaces/http/request.interface';
 import { registerRouteApiResponse } from './constants/register-route-api-response.conatant';
 import { LogUserInDto } from './dto/log-user-in.dto';
 import { LoginService } from './login.service';
@@ -24,11 +24,7 @@ export class AuthController {
   @ApiResponse(registerRouteApiResponse)
   @Post(ROUTES.AUTH.REGISTER_USER)
   registerUser(@Body() createUserDto: CreateUserDto) {
-    try {
-      return this.registerService.registerUser(createUserDto);
-    } catch (error: any) {
-      return error.message;
-    }
+    return this.registerService.registerUser(createUserDto);
   }
 
   @Public()
@@ -38,7 +34,7 @@ export class AuthController {
   }
 
   @Post(ROUTES.AUTH.LOG_OUT)
-  logUserOut(@Req() request: RequestI) {
-    return this.logoutService.logUserOut(request.user.sub);
+  logUserOut(@UserID() userID: string) {
+    return this.logoutService.logUserOut(userID);
   }
 }

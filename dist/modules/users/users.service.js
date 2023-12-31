@@ -14,10 +14,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const cache_service_1 = require("../../core/lib/cache/cache.service");
-const user_entity_1 = require("./entities/user.entity");
 const typeorm_1 = require("@nestjs/typeorm");
+const cache_service_1 = require("../../core/lib/cache/cache.service");
+const nullability_util_1 = require("../../shared/util/nullability.util");
 const typeorm_2 = require("typeorm");
+const select_user_constant_1 = require("./constants/select-user.constant");
+const user_entity_1 = require("./entities/user.entity");
 let UsersService = class UsersService {
     cacheService;
     usersRepository;
@@ -31,16 +33,16 @@ let UsersService = class UsersService {
         return createdUser;
     }
     async findAll(filterUsersDto) {
-        const { take, skip, email, username } = filterUsersDto;
+        const { skip, take, email, username } = filterUsersDto;
         const filterObject = {};
-        !email
+        !(0, nullability_util_1.checkNullability)(email)
             ? (filterObject['email'] = (0, typeorm_2.Not)((0, typeorm_2.IsNull)()))
             : (filterObject['email'] = (0, typeorm_2.ILike)(`%${email}%`));
-        !username
+        !(0, nullability_util_1.checkNullability)(username)
             ? (filterObject['username'] = (0, typeorm_2.Not)((0, typeorm_2.IsNull)()))
             : (filterObject['username'] = (0, typeorm_2.ILike)(`%${username}%`));
         const users = await this.usersRepository.find({
-            select: ['id', 'username', 'city', 'gender', 'email', '__V'],
+            select: select_user_constant_1.selectUser,
             where: [filterObject],
             take,
             skip,
@@ -54,8 +56,11 @@ let UsersService = class UsersService {
             },
         };
     }
-    async findOne(id) {
-        const user = await this.usersRepository.findOneBy({ id });
+    async findOne(userID) {
+        const user = await this.usersRepository.findOne({
+            where: { id: userID },
+            select: select_user_constant_1.selectUser,
+        });
         if (!user)
             throw new common_1.HttpException('user not found', common_1.HttpStatus.NOT_FOUND);
         return {
@@ -67,12 +72,18 @@ let UsersService = class UsersService {
             },
         };
     }
-    async update(id, updateUserDto) {
-        const updateResult = await this.usersRepository.update({ id }, updateUserDto);
+    async update(userID, updateUserDto) {
+        const updateResult = await this.usersRepository
+            .createQueryBuilder()
+            .update(user_entity_1.User)
+            .set(updateUserDto)
+            .where('id = :id', { id: userID })
+            .returning(select_user_constant_1.selectUser)
+            .execute();
         if (!updateResult.affected)
             throw new common_1.HttpException('user not found', common_1.HttpStatus.NOT_FOUND);
         return {
-            data: updateResult.raw,
+            data: updateResult.raw[0],
             message: {
                 translationKey: 'shared.success.update',
                 args: { entity: 'entities.user' },
@@ -80,13 +91,19 @@ let UsersService = class UsersService {
             httpStatus: common_1.HttpStatus.OK,
         };
     }
-    async remove(id) {
-        const deleteResult = await this.usersRepository.delete({ id });
+    async remove(userID) {
+        const deleteResult = await this.usersRepository
+            .createQueryBuilder()
+            .delete()
+            .from(user_entity_1.User)
+            .where('id = :id', { id: userID })
+            .returning(select_user_constant_1.selectUser)
+            .execute();
         if (!deleteResult.affected)
-            throw new common_1.HttpException('User was not found', common_1.HttpStatus.NOT_FOUND);
-        this.cacheService.del(id + '');
+            throw new common_1.HttpException('user not found', common_1.HttpStatus.NOT_FOUND);
+        this.cacheService.del(userID + '');
         return {
-            data: deleteResult.raw,
+            data: deleteResult.raw[0],
             message: {
                 translationKey: 'shared.success.delete',
                 args: { entity: 'entities.user' },
@@ -94,9 +111,14 @@ let UsersService = class UsersService {
             httpStatus: common_1.HttpStatus.OK,
         };
     }
+    findOneByID(userID) {
+        return this.usersRepository.findOneBy({ id: userID });
+    }
     findUserByEmail(email) {
-        const user = this.usersRepository.findOneBy({ email });
-        return user;
+        return this.usersRepository.findOneBy({ email });
+    }
+    findUserByColumn(column, value) {
+        return this.usersRepository.findOneBy({ [column]: value });
     }
 };
 exports.UsersService = UsersService;

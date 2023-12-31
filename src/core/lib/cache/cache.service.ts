@@ -1,8 +1,8 @@
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { CacheObjectI } from './interfaces/cache-object.interface';
 import { Field } from './types/field.type';
-import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()
 export class CacheService {
@@ -12,8 +12,8 @@ export class CacheService {
     return this.cacheManager.set(key, value, ttl);
   }
 
-  get<CacheObjectI>(key: string) {
-    return this.cacheManager.get<CacheObjectI>(key);
+  get<T>(key: string) {
+    return this.cacheManager.get<T>(key);
   }
 
   del(key: string) {

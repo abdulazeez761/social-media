@@ -28,6 +28,8 @@ export type I18nTranslations = {
         "message": string;
         "email": string;
         "notification": string;
+        "post": string;
+        "comment": string;
     };
     "shared": {
         "success": {

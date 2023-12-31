@@ -7,7 +7,7 @@ import { FilterDto } from 'shared/dtos/filter.dto';
 export class FilterUsersDto extends FilterDto {
   @ApiProperty({
     description: "User's email",
-    example: 'abdulaziz@gmail.com',
+    example: 'mut1aq@gmail.com',
     isArray: false,
     maxLength: 320,
     name: 'email',
@@ -30,7 +30,7 @@ export class FilterUsersDto extends FilterDto {
 
   @ApiProperty({
     description: "User's username",
-    example: 'Abdulaziz',
+    example: 'mut1aq',
     isArray: false,
     maxLength: 30,
     name: 'username',

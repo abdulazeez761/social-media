@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const dist_1 = require("@nestjs/swagger/dist");
 const decorators_1 = require("@nestjs/swagger/dist/decorators");
 const public_decorator_1 = require("../../core/decorators/public.decorator");
+const user_id_decorator_1 = require("../../core/decorators/user-id.decorator");
 const create_user_dto_1 = require("../users/dto/create-user.dto");
 const routes_constant_1 = require("../../shared/constants/routes.constant");
 const register_route_api_response_conatant_1 = require("./constants/register-route-api-response.conatant");
@@ -34,18 +35,13 @@ let AuthController = class AuthController {
         this.logoutService = logoutService;
     }
     registerUser(createUserDto) {
-        try {
-            return this.registerService.registerUser(createUserDto);
-        }
-        catch (error) {
-            return error.message;
-        }
+        return this.registerService.registerUser(createUserDto);
     }
     logUserIn(logUserInDto) {
         return this.loginService.logUserIn(logUserInDto);
     }
-    logUserOut(request) {
-        return this.logoutService.logUserOut(request.user.sub);
+    logUserOut(userID) {
+        return this.logoutService.logUserOut(userID);
     }
 };
 exports.AuthController = AuthController;
@@ -68,9 +64,9 @@ __decorate([
 ], AuthController.prototype, "logUserIn", null);
 __decorate([
     (0, common_1.Post)(routes_constant_1.ROUTES.AUTH.LOG_OUT),
-    __param(0, (0, common_1.Req)()),
+    __param(0, (0, user_id_decorator_1.UserID)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logUserOut", null);
 exports.AuthController = AuthController = __decorate([

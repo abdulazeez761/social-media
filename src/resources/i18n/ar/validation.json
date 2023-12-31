@@ -5,10 +5,10 @@
   "isInt": "{property} يجب ان يكون عدد صحيح",
   "max": "{property} يجب ان يكون اقل من {max}",
   "email": "يجب التزويد بايميل صحيح",
-  "minLength": "{property} يجب ان يكون اكثر من {characters} حرف",
+  "minLength": "{property} يجب ان يكون اكثر من {min} حرف",
   "phoneNumber": "يجب ادخال رقم هاتف صحيح",
-  "maxLength": "{property} يجب ان يكون اقل من {characters} حرف",
-  "uniqueProperty": "يوجد حساب مستخدم {property}: {value}, الرجاء استخدام {property} مختلف",
+  "maxLength": "{property} يجب ان يكون اقل من {max} حرف",
+  "uniqueProperty": "يوجد {entity} مستخدم {property}: {value}, الرجاء استخدام {property} مختلف",
   "passwordContains": {
     "uppercase": "يجب ان تحتوي كلمة السر على حرف كبير",
     "lowercase": "يجب ان تحتوي كلمة السر على حرف صغير",

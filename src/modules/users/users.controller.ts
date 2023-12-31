@@ -1,11 +1,20 @@
-import { Controller, Get, Body, Patch, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+  Query,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags } from '@nestjs/swagger/dist/decorators';
 import { ROUTES } from 'shared/constants/routes.constant';
-import { UserID } from 'core/decorators/user-id.decorator';
 import { ResponseFromServiceI } from 'shared/interfaces/general/response-from-service.interface';
 import { User } from './entities/user.entity';
+import { UserID } from 'core/decorators/user-id.decorator';
 import { FilterUsersDto } from './dto/filter-users.dto';
 
 @ApiTags(ROUTES.USERS.CONTROLLER)
@@ -21,7 +30,7 @@ export class UsersController {
   }
 
   @Get(ROUTES.USERS.FIND_ONE)
-  findOne(@UserID() userID: string) {
+  findOne(@Param('userID', new ParseUUIDPipe()) userID: string) {
     return this.usersService.findOne(userID);
   }
 

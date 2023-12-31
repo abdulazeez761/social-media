@@ -1,5 +1,5 @@
 {
-  "name": "social-media-be-course",
+  "name": "social-media-be",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -28,7 +28,7 @@
     "@nestjs/mapped-types": "^2.0.4",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/schedule": "^4.0.0",
-    "@nestjs/swagger": "^7.1.17",
+    "@nestjs/swagger": "^7.1.16",
     "@nestjs/throttler": "^5.1.0",
     "@nestjs/typeorm": "^10.0.1",
     "@paralleldrive/cuid2": "^2.2.2",
@@ -43,7 +43,7 @@
     "nestjs-conditional-exception-filter": "^1.2.1",
     "nestjs-i18n": "^10.4.0",
     "pg": "^8.11.3",
-    "redis": "^4.6.12",
+    "redis": "^4.6.11",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "typeorm": "^0.3.17"

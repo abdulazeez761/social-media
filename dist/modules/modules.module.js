@@ -10,12 +10,14 @@ exports.ModulesModule = void 0;
 const common_1 = require("@nestjs/common");
 const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
+const posts_module_1 = require("./posts/posts.module");
+const comments_module_1 = require("./comments/comments.module");
 let ModulesModule = class ModulesModule {
 };
 exports.ModulesModule = ModulesModule;
 exports.ModulesModule = ModulesModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, auth_module_1.AuthModule],
+        imports: [users_module_1.UsersModule, auth_module_1.AuthModule, posts_module_1.PostsModule, comments_module_1.CommentsModule],
     })
 ], ModulesModule);
 //# sourceMappingURL=modules.module.js.map

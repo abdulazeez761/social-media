@@ -10,6 +10,7 @@ const compression = require("compression");
 const config_1 = require("@nestjs/config");
 const bodyParser = require("body-parser");
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, {
         bufferLogs: true,
@@ -46,6 +47,7 @@ async function bootstrap() {
         detailedErrors: false,
         errorHttpStatusCode: common_1.HttpStatus.BAD_REQUEST,
     }));
+    (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), { fallbackOnErrors: true });
     app.useLogger(logger);
     if (nodeEnv === 'prod') {
         const config = new swagger_1.DocumentBuilder()

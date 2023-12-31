@@ -7,10 +7,10 @@ import {
 import { JwtModule } from '@nestjs/jwt';
 import { ModulesModule } from 'modules/modules.module';
 import {
-  TypeORMOptions,
   configOptions,
   i18nOptions,
   jwtOptions,
+  typeORMOptions,
 } from 'shared/configs/app.option';
 import { CacheModule } from 'core/lib/cache/cache.module';
 import { I18nModule } from 'nestjs-i18n';
@@ -32,7 +32,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     I18nModule.forRoot(i18nOptions),
     JwtModule.registerAsync(jwtOptions),
     CacheModule.register('cache-manager-redis-yet'),
-    TypeOrmModule.forRootAsync(TypeORMOptions),
+    TypeOrmModule.forRootAsync(typeORMOptions),
     ModulesModule,
   ],
   controllers: [],

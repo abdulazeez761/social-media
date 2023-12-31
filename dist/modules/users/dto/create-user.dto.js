@@ -22,7 +22,6 @@ class CreateUserDto {
     password;
     gender;
     birthday;
-    city;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([
@@ -36,13 +35,13 @@ __decorate([
         required: true,
         type: String,
     }),
-    (0, class_validator_1.IsString)({
-        message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.isString'),
-    }),
     (0, class_validator_2.MinLength)(3, {
         message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.minLength', {
             min: 3,
         }),
+    }),
+    (0, class_validator_1.IsString)({
+        message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.isString'),
     }),
     (0, class_validator_2.IsNotEmpty)({
         message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.isNotEmpty'),
@@ -52,7 +51,7 @@ __decorate([
 __decorate([
     (0, decorators_1.ApiProperty)({
         description: "User's email",
-        example: 'abdulaziz@gmail.com',
+        example: 'mut1aq@gmail.com',
         isArray: false,
         maxLength: 320,
         minLength: 5,
@@ -84,7 +83,7 @@ __decorate([
 __decorate([
     (0, decorators_1.ApiProperty)({
         description: "User's password",
-        example: 'abdulaziz',
+        example: 'mut1aq.54321',
         isArray: false,
         maxLength: 30,
         minLength: 8,
@@ -116,7 +115,7 @@ __decorate([
 __decorate([
     (0, decorators_1.ApiProperty)({
         description: "User's password",
-        example: 'Abdulaziz@1',
+        example: 'mut1aq.54321',
         isArray: false,
         maxLength: 30,
         minLength: 8,
@@ -139,21 +138,4 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "birthday", void 0);
-__decorate([
-    (0, class_validator_2.MaxLength)(100, {
-        message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.minLength', {
-            max: 100,
-        }),
-    }),
-    (0, class_validator_2.MinLength)(3, {
-        message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.minLength', {
-            min: 3,
-        }),
-    }),
-    (0, class_validator_2.IsNotEmpty)({
-        message: (0, nestjs_i18n_1.i18nValidationMessage)('validation.isNotEmpty'),
-    }),
-    (0, class_validator_2.IsOptional)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "city", void 0);
 //# sourceMappingURL=create-user.dto.js.map

@@ -4,5 +4,7 @@
   "room": "محادثة",
   "message": "رسالة",
   "email": "الايميل",
-  "notification": "اشعار"
+  "notification": "اشعار",
+  "post": "منشور",
+  "comment": "تعليق"
 }
