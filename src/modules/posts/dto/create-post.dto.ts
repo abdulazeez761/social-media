@@ -6,7 +6,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { OneOfOptionalRequired } from 'core/decorators/post-media-requierment.decorator';
+import { OneOfOptionalRequired } from 'modules/posts/decorator/is-post-valid.decorator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 import { I18nTranslations } from 'resources/generated/i18n.generated';
 
