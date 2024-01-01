@@ -14,6 +14,7 @@ const post_entity_1 = require("../../posts/entities/post.entity");
 const base_entity_1 = require("../../../shared/entities/base.entity");
 const gender_enum_1 = require("../../../shared/enums/gender.enum");
 const typeorm_1 = require("typeorm");
+const comment_entity_1 = require("../../comments/entities/comment.entity");
 let User = class User extends base_entity_1.Base {
     username;
     email;
@@ -21,6 +22,7 @@ let User = class User extends base_entity_1.Base {
     gender;
     birthday;
     posts;
+    comments;
 };
 exports.User = User;
 __decorate([
@@ -47,6 +49,10 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => post_entity_1.Post, (post) => post.author),
     __metadata("design:type", Array)
 ], User.prototype, "posts", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => comment_entity_1.Comment, (comment) => comment.author),
+    __metadata("design:type", Array)
+], User.prototype, "comments", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

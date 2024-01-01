@@ -26,5 +26,6 @@
   "invalidMongoDBID": "{property} ليس صحيح",
   "throttlerError": "لقد حاولت ارسال عدد كثير من الطلبات, الرجاء الانتظار دقيقة على الاقل",
   "fileType": "فقط الملفات بنوع {fileTypes} يمكن استخدامها و الملف {fileName} من نوع {invalidType}",
-  "fileSize": "يجب ان يكون حجم الملف اقل من {size} و الملف {fileName} حجمه {fileSize}"
+  "fileSize": "يجب ان يكون حجم الملف اقل من {size} و الملف {fileName} حجمه {fileSize}",
+  "isContainsOnOfTheRequierd": "{property} المنشور يجب ان يحتوي على منشور مع صورة او منشور مع مقطع او منشوف مع صورة ونص او منشوف مقطع ونص او نص"
 }

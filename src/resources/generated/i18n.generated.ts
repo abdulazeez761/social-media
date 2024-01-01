@@ -80,6 +80,7 @@ export type I18nTranslations = {
         "throttlerError": string;
         "fileType": string;
         "fileSize": string;
+        "isContainsOnOfTheRequierd": string;
     };
 };
 export type I18nPath = Path<I18nTranslations>;

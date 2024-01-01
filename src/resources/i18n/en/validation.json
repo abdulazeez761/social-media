@@ -26,5 +26,6 @@
   "invalidMongoDBID": "The {property} is not a MongoDB ID, and you provided {value}",
   "throttlerError": "You have made too many requests, please wait.",
   "fileType": "Only {fileTypes} file types are allowed, and {fileName} has {invalidType} as the type",
-  "fileSize": "File size must be less than {size} and the file {fileName} is {fileSize}"
+  "fileSize": "File size must be less than {size} and the file {fileName} is {fileSize}",
+  "isContainsOnOfTheRequierd": "{property} post must have : Post with one image.Post with one video. Post with text.Post with image and text. Post with video and text. "
 }

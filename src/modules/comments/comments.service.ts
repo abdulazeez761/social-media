@@ -106,46 +106,37 @@ export class CommentsService {
       },
     };
   }
-  async findTotalComments(postID: string): Promise<number> {
-    let postComments = await this.commentssRepository.find({
-      where: {
-        post: {
-          id: postID,
-        },
-      },
-    });
-    let totalPostComments = postComments.length;
-    return totalPostComments;
-  }
 
   async findPostComments(
     postID: string,
     filterCommentsDto: FilterCommentsDto,
-  ): Promise<ResponseFromServiceI<Comment[]>> {
+  ): Promise<ResponseFromServiceI<Object>> {
     const { skip, take } = filterCommentsDto;
-    let postComments = await this.commentssRepository.find({
-      where: {
-        post: {
-          id: postID,
+    const [postComments, totalPostComments] = await Promise.all([
+      await this.commentssRepository.find({
+        where: {
+          post: {
+            id: postID,
+          },
         },
-      },
-      relations: { author: true },
-      select: {
-        ...relationSelectComment,
-        author: relationSelectUser,
-      },
-      take,
-      skip,
-    });
+        relations: { author: true },
+        select: {
+          ...relationSelectComment,
+          author: relationSelectUser,
+        },
+        take,
+        skip,
+      }),
+      await this.commentssRepository.count({
+        where: {
+          post: {
+            id: postID,
+          },
+        },
+      }),
+    ]);
 
-    let totalPostComments = await this.findTotalComments(postID);
-    if (!postComments[0] || totalPostComments === 0)
-      throw new HttpException(
-        'this post has no comments!',
-        HttpStatus.NOT_FOUND,
-      );
-
-    let data = { ...postComments, totalPostComments };
+    let data = { postComments, totalPostComments };
     return {
       data,
       httpStatus: HttpStatus.OK,

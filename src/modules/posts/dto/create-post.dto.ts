@@ -6,6 +6,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
+import { OneOfOptionalRequired } from 'core/decorators/post-media-requierment.decorator';
 import { i18nValidationMessage } from 'nestjs-i18n';
 import { I18nTranslations } from 'resources/generated/i18n.generated';
 
@@ -37,6 +38,11 @@ export class CreatePostDto {
     message: i18nValidationMessage<I18nTranslations>('validation.isNotEmpty'),
   })
   @IsOptional()
+  @OneOfOptionalRequired({
+    message: i18nValidationMessage<I18nTranslations>(
+      'validation.isContainsOnOfTheRequierd',
+    ),
+  })
   image?: string;
 
   @ApiProperty({
@@ -66,6 +72,11 @@ export class CreatePostDto {
     message: i18nValidationMessage<I18nTranslations>('validation.isNotEmpty'),
   })
   @IsOptional()
+  @OneOfOptionalRequired({
+    message: i18nValidationMessage<I18nTranslations>(
+      'validation.isContainsOnOfTheRequierd',
+    ),
+  })
   video?: string;
 
   @ApiProperty({
@@ -89,5 +100,10 @@ export class CreatePostDto {
     message: i18nValidationMessage<I18nTranslations>('validation.isNotEmpty'),
   })
   @IsOptional()
+  @OneOfOptionalRequired({
+    message: i18nValidationMessage<I18nTranslations>(
+      'validation.isContainsOnOfTheRequierd',
+    ),
+  })
   text?: string;
 }

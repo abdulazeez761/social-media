@@ -8,9 +8,9 @@ export class Comment extends Base {
   @Column({ type: 'varchar', length: 2200, nullable: true })
   text?: string;
 
-  @ManyToOne(() => User, (author) => author.id)
+  @ManyToOne(() => User, (author) => author.comments)
   author!: User;
 
-  @ManyToOne(() => Post, (post) => post.id)
+  @ManyToOne(() => Post, (post) => post.comments)
   post!: Post;
 }

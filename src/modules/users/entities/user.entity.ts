@@ -2,7 +2,7 @@ import { Post } from 'modules/posts/entities/post.entity';
 import { Base } from 'shared/entities/base.entity';
 import { Gender } from 'shared/enums/gender.enum';
 import { Column, Entity, OneToMany } from 'typeorm';
-
+import { Comment } from 'modules/comments/entities/comment.entity';
 @Entity()
 export class User extends Base {
   @Column({ type: 'varchar', length: 30, unique: true })
@@ -22,4 +22,7 @@ export class User extends Base {
 
   @OneToMany(() => Post, (post) => post.author)
   posts!: Post[];
+
+  @OneToMany(() => Comment, (comment) => comment.author)
+  comments!: Comment[];
 }
